@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e65d9379b76c427b8c446b091054c2e1" Name="Diagram1" ZoomLevel="97" >
+        <EntityTypeShape EntityType="comp1690Model.Product" Width="1.875" PointX="2" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.Stock" Width="1.5" PointX="5.25" PointY="6.625" />
+        <EntityTypeShape EntityType="comp1690Model.Warehouse" Width="1.5" PointX="8" PointY="6.875" />
+        <EntityTypeShape EntityType="comp1690Model.StockTransferItem" Width="2" PointX="4.75" PointY="9.25" />
+        <EntityTypeShape EntityType="comp1690Model.OrderItem" Width="1.5" PointX="2.375" PointY="10.5" />
+        <EntityTypeShape EntityType="comp1690Model.Order" Width="1.5" PointX="5.625" PointY="11.375" />
+        <EntityTypeShape EntityType="comp1690Model.Customer" Width="1.5" PointX="10.25" PointY="9.75" />
+        <AssociationConnector Association="comp1690Model.CustomerOrder" />
+        <AssociationConnector Association="comp1690Model.OrderOrderItem" />
+        <AssociationConnector Association="comp1690Model.ProductStock" />
+        <AssociationConnector Association="comp1690Model.ProductOrderItem" />
+        <AssociationConnector Association="comp1690Model.ProductStockTransferItem" ManuallyRouted="true" >
+          <ConnectorPoint PointX="3.875" PointY="8.3453392070630485" />
+          <ConnectorPoint PointX="4.2051119635326089" PointY="8.3453392070630485" />
+          <ConnectorPoint PointX="4.2051119635326089" PointY="8.6629850260416656" />
+          <ConnectorPoint PointX="5.75" PointY="8.6629850260416656" />
+          <ConnectorPoint PointX="5.75" PointY="9.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="comp1690Model.WarehouseStock" ></AssociationConnector>
+        <EntityTypeShape EntityType="comp1690Model.StockTransfer" Width="2" PointX="7.75" PointY="9.25" />
+        <AssociationConnector Association="comp1690Model.StockTransferStockTransferItem" />
+        <AssociationConnector Association="comp1690Model.StockTransferWarehouse" />
+        <AssociationConnector Association="comp1690Model.StockTransferDestination" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
