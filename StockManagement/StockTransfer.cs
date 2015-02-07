@@ -16,14 +16,14 @@ namespace StockManagement
     {
         public StockTransfer()
         {
-            this.StockTransferItems = new HashSet<StockTransferItem>();
+            this.StockTransferItems = new ObservableListSource<StockTransferItem>();
         }
     
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public double Distance { get; set; }
     
-        public virtual ICollection<StockTransferItem> StockTransferItems { get; set; }
+        public virtual ObservableListSource<StockTransferItem> StockTransferItems { get; set; }
         public virtual Warehouse Departure { get; set; }
         public virtual Warehouse Destination { get; set; }
     }

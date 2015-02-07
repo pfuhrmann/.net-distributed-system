@@ -16,9 +16,9 @@ namespace StockManagement
     {
         public Product()
         {
-            this.Stocks = new HashSet<Stock>();
-            this.OrderItems = new HashSet<OrderItem>();
-            this.StockTransferItems = new HashSet<StockTransferItem>();
+            this.Stocks = new ObservableListSource<Stock>();
+            this.OrderItems = new ObservableListSource<OrderItem>();
+            this.StockTransferItems = new ObservableListSource<StockTransferItem>();
         }
     
         public int Id { get; set; }
@@ -28,8 +28,8 @@ namespace StockManagement
         public short BoxItemsAmount { get; set; }
         public int QuantityTotal { get; set; }
     
-        public virtual ICollection<Stock> Stocks { get; set; }
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
-        public virtual ICollection<StockTransferItem> StockTransferItems { get; set; }
+        public virtual ObservableListSource<Stock> Stocks { get; set; }
+        public virtual ObservableListSource<OrderItem> OrderItems { get; set; }
+        public virtual ObservableListSource<StockTransferItem> StockTransferItems { get; set; }
     }
 }

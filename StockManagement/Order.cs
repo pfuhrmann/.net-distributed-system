@@ -16,7 +16,7 @@ namespace StockManagement
     {
         public Order()
         {
-            this.OrderItems = new HashSet<OrderItem>();
+            this.OrderItems = new ObservableListSource<OrderItem>();
         }
     
         public int Id { get; set; }
@@ -24,6 +24,6 @@ namespace StockManagement
         public string Status { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual ObservableListSource<OrderItem> OrderItems { get; set; }
     }
 }

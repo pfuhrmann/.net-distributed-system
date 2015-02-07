@@ -16,7 +16,7 @@ namespace StockManagement
     {
         public Customer()
         {
-            this.Orders = new HashSet<Order>();
+            this.Orders = new ObservableListSource<Order>();
         }
     
         public int Id { get; set; }
@@ -32,6 +32,6 @@ namespace StockManagement
         public string Postcode { get; set; }
         public string Town { get; set; }
     
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ObservableListSource<Order> Orders { get; set; }
     }
 }

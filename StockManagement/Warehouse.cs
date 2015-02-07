@@ -16,12 +16,12 @@ namespace StockManagement
     {
         public Warehouse()
         {
-            this.Stocks = new HashSet<Stock>();
+            this.Stocks = new ObservableListSource<Stock>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<Stock> Stocks { get; set; }
+        public virtual ObservableListSource<Stock> Stocks { get; set; }
     }
 }
