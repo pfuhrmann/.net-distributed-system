@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "StockManagement\DataModel.csproj", "{CE4F0C1E-8DC3-4335-9ABA-88142ACC7C62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{CE4F0C1E-8DC3-4335-9ABA-88142ACC7C62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagement", "StockManagement\StockManagement.csproj", "{7C4683DA-AE30-47EE-BBF2-94F7A0211D79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CE4F0C1E-8DC3-4335-9ABA-88142ACC7C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE4F0C1E-8DC3-4335-9ABA-88142ACC7C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE4F0C1E-8DC3-4335-9ABA-88142ACC7C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C4683DA-AE30-47EE-BBF2-94F7A0211D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C4683DA-AE30-47EE-BBF2-94F7A0211D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C4683DA-AE30-47EE-BBF2-94F7A0211D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C4683DA-AE30-47EE-BBF2-94F7A0211D79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

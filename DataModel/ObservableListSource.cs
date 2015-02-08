@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Data.Entity;
 
-namespace StockManagement
+namespace DataModel
 {
     public class ObservableListSource<T> : ObservableCollection<T>, IListSource
         where T : class

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DataModel
+namespace StockManagement
 {
     static class Program
     {
@@ -16,6 +16,7 @@ namespace DataModel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new ManageProductsForm());
         }
     }
 }
