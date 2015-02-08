@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/08/2015 00:16:44
+-- Date Created: 02/08/2015 03:16:37
 -- Generated from EDMX file: D:\Google Drive\Visual Studio\comp1690\StockManagement\DataModel.edmx
 -- --------------------------------------------------
 
@@ -143,10 +143,10 @@ GO
 CREATE TABLE [dbo].[Products] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Price] decimal(18,0)  NOT NULL,
-    [Weight] float  NOT NULL,
+    [Price] decimal(10,4)  NOT NULL,
+    [Weight] decimal(7,2)  NOT NULL,
     [BoxItemsAmount] smallint  NOT NULL,
-    [QuantityTotal] int  NOT NULL
+    [StockTotal] int  NOT NULL
 );
 GO
 
@@ -154,7 +154,7 @@ GO
 CREATE TABLE [dbo].[StocksTransfers] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Date] datetime  NOT NULL,
-    [Distance] float  NOT NULL,
+    [Distance] decimal(8,2)  NOT NULL,
     [Departure_Id] int  NOT NULL,
     [Destination_Id] int  NOT NULL
 );

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StockManagement
+namespace DataModel
 {
     using System;
     using System.Data.Entity;

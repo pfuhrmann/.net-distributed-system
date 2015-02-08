@@ -7,17 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StockManagement
+namespace DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class StocksTransferItem
+    public partial class StocksTransfer
     {
-        public int Id { get; set; }
-        public int Quantity { get; set; }
+        public StocksTransfer()
+        {
+            this.StockTransferItems = new ObservableListSource<StocksTransferItem>();
+        }
     
-        public virtual Product Product { get; set; }
-        public virtual StocksTransfer StockTransfer { get; set; }
+        public int Id { get; set; }
+        public System.DateTime Date { get; set; }
+        public decimal Distance { get; set; }
+    
+        public virtual ObservableListSource<StocksTransferItem> StockTransferItems { get; set; }
+        public virtual Warehouse Departure { get; set; }
+        public virtual Warehouse Destination { get; set; }
     }
 }

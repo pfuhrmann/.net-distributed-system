@@ -7,23 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StockManagement
+namespace DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class Stock
     {
-        public Order()
-        {
-            this.OrderItems = new ObservableListSource<OrderItem>();
-        }
-    
         public int Id { get; set; }
-        public string Date { get; set; }
-        public string Status { get; set; }
+        public int Quantity { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual ObservableListSource<OrderItem> OrderItems { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
     }
 }

@@ -118,10 +118,10 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Price" Type="decimal" Nullable="false" />
-    <Property Name="Weight" Type="float" Nullable="false" />
+    <Property Name="Price" Type="decimal" Nullable="false" Precision="10" Scale="4" />
+    <Property Name="Weight" Type="decimal" Nullable="false" Precision="7" Scale="2" />
     <Property Name="BoxItemsAmount" Type="smallint" Nullable="false" />
-    <Property Name="QuantityTotal" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="StockTotal" Type="int" Nullable="false" DefaultValue="0" />
   </EntityType>
   <EntityType Name="StocksTransfers">
     <Key>
@@ -129,7 +129,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="Distance" Type="float" Nullable="false" />
+    <Property Name="Distance" Type="decimal" Nullable="false" Precision="8" Scale="2" />
     <Property Name="Departure_Id" Type="int" Nullable="false" />
     <Property Name="Destination_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -300,10 +300,10 @@
           <NavigationProperty Name="OrderItems" Relationship="comp1690Model.ProductOrderItem" FromRole="Product" ToRole="OrderItem" />
           <NavigationProperty Name="StockTransferItems" Relationship="comp1690Model.ProductStockTransferItem" FromRole="Product" ToRole="StockTransferItem" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" />
-          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="Weight" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
           <Property Name="BoxItemsAmount" Type="Int16" Nullable="false" />
-          <Property Name="QuantityTotal" Type="Int32" Nullable="false" DefaultValue="0" />
+          <Property Name="StockTotal" Type="Int32" Nullable="false" DefaultValue="0" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -400,7 +400,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="StockTransferItems" Relationship="comp1690Model.StockTransferStockTransferItem" FromRole="StockTransfer" ToRole="StockTransferItem" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <Property Name="Distance" Type="Double" Nullable="false" />
+          <Property Name="Distance" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
           <NavigationProperty Name="Departure" Relationship="comp1690Model.StockTransferWarehouse" FromRole="StockTransfer" ToRole="Warehouse" />
           <NavigationProperty Name="Destination" Relationship="comp1690Model.StockTransferDestination" FromRole="StockTransfer" ToRole="Warehouse" />
         </EntityType>
@@ -490,7 +490,7 @@
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Weight" ColumnName="Weight" />
           <ScalarProperty Name="BoxItemsAmount" ColumnName="BoxItemsAmount" />
-          <ScalarProperty Name="QuantityTotal" ColumnName="QuantityTotal" />
+          <ScalarProperty Name="StockTotal" ColumnName="StockTotal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

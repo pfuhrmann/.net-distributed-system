@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StockManagement
+namespace DataModel
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace StockManagement
     {
         public Product()
         {
-            this.QuantityTotal = 0;
+            this.StockTotal = 0;
             this.Stocks = new ObservableListSource<Stock>();
             this.OrderItems = new ObservableListSource<OrderItem>();
             this.StockTransferItems = new ObservableListSource<StocksTransferItem>();
@@ -25,9 +25,9 @@ namespace StockManagement
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public double Weight { get; set; }
+        public decimal Weight { get; set; }
         public short BoxItemsAmount { get; set; }
-        public int QuantityTotal { get; set; }
+        public int StockTotal { get; set; }
     
         public virtual ObservableListSource<Stock> Stocks { get; set; }
         public virtual ObservableListSource<OrderItem> OrderItems { get; set; }

@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StockManagement
+namespace DataModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Stock
+    public partial class StocksTransferItem
     {
         public int Id { get; set; }
         public int Quantity { get; set; }
     
         public virtual Product Product { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
+        public virtual StocksTransfer StockTransfer { get; set; }
     }
 }
