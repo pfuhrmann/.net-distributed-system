@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="comp1690Model.Product" Width="1.875" PointX="2" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="comp1690Model.Stock" Width="1.5" PointX="5.25" PointY="6.625" />
         <EntityTypeShape EntityType="comp1690Model.Warehouse" Width="1.5" PointX="8" PointY="6.875" />
-        <EntityTypeShape EntityType="comp1690Model.StockTransferItem" Width="2" PointX="4.75" PointY="9.25" />
+        <EntityTypeShape EntityType="comp1690Model.StocksTransferItem" Width="2" PointX="4.75" PointY="9.25" />
         <EntityTypeShape EntityType="comp1690Model.OrderItem" Width="1.5" PointX="2.375" PointY="10.5" />
         <EntityTypeShape EntityType="comp1690Model.Order" Width="1.5" PointX="5.625" PointY="11.375" />
         <EntityTypeShape EntityType="comp1690Model.Customer" Width="1.5" PointX="10.25" PointY="9.75" />
@@ -17,14 +17,12 @@
         <AssociationConnector Association="comp1690Model.ProductStock" />
         <AssociationConnector Association="comp1690Model.ProductOrderItem" />
         <AssociationConnector Association="comp1690Model.ProductStockTransferItem" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.875" PointY="8.3453392070630485" />
-          <ConnectorPoint PointX="4.2051119635326089" PointY="8.3453392070630485" />
-          <ConnectorPoint PointX="4.2051119635326089" PointY="8.6629850260416656" />
-          <ConnectorPoint PointX="5.75" PointY="8.6629850260416656" />
-          <ConnectorPoint PointX="5.75" PointY="9.25" />
+          <ConnectorPoint PointX="3.875" PointY="8.7999886067708317" />
+          <ConnectorPoint PointX="4.96875" PointY="8.7999886067708317" />
+          <ConnectorPoint PointX="4.96875" PointY="9.25" />
         </AssociationConnector>
         <AssociationConnector Association="comp1690Model.WarehouseStock" ></AssociationConnector>
-        <EntityTypeShape EntityType="comp1690Model.StockTransfer" Width="2" PointX="7.75" PointY="9.25" />
+        <EntityTypeShape EntityType="comp1690Model.StocksTransfer" Width="2" PointX="7.75" PointY="9.25" />
         <AssociationConnector Association="comp1690Model.StockTransferStockTransferItem" />
         <AssociationConnector Association="comp1690Model.StockTransferWarehouse" />
         <AssociationConnector Association="comp1690Model.StockTransferDestination" />

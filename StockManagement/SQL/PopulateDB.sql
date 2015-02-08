@@ -1,11 +1,15 @@
-﻿INSERT INTO [dbo].[Products]
+﻿USE comp1690;
+
+INSERT INTO [dbo].[Products]
  ([Name]
  ,[Price]
  ,[Weight]
- ,[BoxItemsAmount])
+ ,[BoxItemsAmount]
+ ,[QuantityTotal])
 VALUES
  ('Product Name 1'
  ,18.50
  ,300
- ,20)
+ ,20
+ ,0)
 GO

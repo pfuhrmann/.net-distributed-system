@@ -71,11 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="ManageProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ManageProductsForm.Designer.cs">
+      <DependentUpon>ManageProductsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ObservableListSource.cs" />
     <Compile Include="Order.cs">
@@ -92,17 +92,17 @@
     <Compile Include="Stock.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="StockTransfer.cs">
+    <Compile Include="StocksTransfer.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="StockTransferItem.cs">
+    <Compile Include="StocksTransferItem.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Warehouse.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="ManageProductsForm.resx">
+      <DependentUpon>ManageProductsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -153,6 +153,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DataModel.edmx.sql" />
+    <Content Include="SQL\PopulateDB.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

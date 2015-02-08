@@ -16,9 +16,10 @@ namespace StockManagement
     {
         public Product()
         {
+            this.QuantityTotal = 0;
             this.Stocks = new ObservableListSource<Stock>();
             this.OrderItems = new ObservableListSource<OrderItem>();
-            this.StockTransferItems = new ObservableListSource<StockTransferItem>();
+            this.StockTransferItems = new ObservableListSource<StocksTransferItem>();
         }
     
         public int Id { get; set; }
@@ -30,6 +31,6 @@ namespace StockManagement
     
         public virtual ObservableListSource<Stock> Stocks { get; set; }
         public virtual ObservableListSource<OrderItem> OrderItems { get; set; }
-        public virtual ObservableListSource<StockTransferItem> StockTransferItems { get; set; }
+        public virtual ObservableListSource<StocksTransferItem> StockTransferItems { get; set; }
     }
 }

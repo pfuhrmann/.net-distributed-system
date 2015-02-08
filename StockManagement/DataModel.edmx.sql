@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/07/2015 19:06:07
+-- Date Created: 02/08/2015 00:16:44
 -- Generated from EDMX file: D:\Google Drive\Visual Studio\comp1690\StockManagement\DataModel.edmx
 -- --------------------------------------------------
 
@@ -30,19 +30,19 @@ IF OBJECT_ID(N'[dbo].[FK_ProductOrderItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[OrderItems] DROP CONSTRAINT [FK_ProductOrderItem];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ProductStockTransferItem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[StockTransferItems] DROP CONSTRAINT [FK_ProductStockTransferItem];
+    ALTER TABLE [dbo].[StocksTransferItems] DROP CONSTRAINT [FK_ProductStockTransferItem];
 GO
 IF OBJECT_ID(N'[dbo].[FK_WarehouseStock]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Stocks] DROP CONSTRAINT [FK_WarehouseStock];
 GO
 IF OBJECT_ID(N'[dbo].[FK_StockTransferStockTransferItem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[StockTransferItems] DROP CONSTRAINT [FK_StockTransferStockTransferItem];
+    ALTER TABLE [dbo].[StocksTransferItems] DROP CONSTRAINT [FK_StockTransferStockTransferItem];
 GO
 IF OBJECT_ID(N'[dbo].[FK_StockTransferWarehouse]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[StockTransfers] DROP CONSTRAINT [FK_StockTransferWarehouse];
+    ALTER TABLE [dbo].[StocksTransfers] DROP CONSTRAINT [FK_StockTransferWarehouse];
 GO
 IF OBJECT_ID(N'[dbo].[FK_StockTransferDestination]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[StockTransfers] DROP CONSTRAINT [FK_StockTransferDestination];
+    ALTER TABLE [dbo].[StocksTransfers] DROP CONSTRAINT [FK_StockTransferDestination];
 GO
 
 -- --------------------------------------------------
@@ -55,8 +55,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Warehouses]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Warehouses];
 GO
-IF OBJECT_ID(N'[dbo].[StockTransferItems]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[StockTransferItems];
+IF OBJECT_ID(N'[dbo].[StocksTransferItems]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[StocksTransferItems];
 GO
 IF OBJECT_ID(N'[dbo].[OrderItems]', 'U') IS NOT NULL
     DROP TABLE [dbo].[OrderItems];
@@ -70,8 +70,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Products]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Products];
 GO
-IF OBJECT_ID(N'[dbo].[StockTransfers]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[StockTransfers];
+IF OBJECT_ID(N'[dbo].[StocksTransfers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[StocksTransfers];
 GO
 
 -- --------------------------------------------------
@@ -94,8 +94,8 @@ CREATE TABLE [dbo].[Warehouses] (
 );
 GO
 
--- Creating table 'StockTransferItems'
-CREATE TABLE [dbo].[StockTransferItems] (
+-- Creating table 'StocksTransferItems'
+CREATE TABLE [dbo].[StocksTransferItems] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Quantity] int  NOT NULL,
     [Product_Id] int  NOT NULL,
@@ -150,8 +150,8 @@ CREATE TABLE [dbo].[Products] (
 );
 GO
 
--- Creating table 'StockTransfers'
-CREATE TABLE [dbo].[StockTransfers] (
+-- Creating table 'StocksTransfers'
+CREATE TABLE [dbo].[StocksTransfers] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Date] datetime  NOT NULL,
     [Distance] float  NOT NULL,
@@ -176,9 +176,9 @@ ADD CONSTRAINT [PK_Warehouses]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'StockTransferItems'
-ALTER TABLE [dbo].[StockTransferItems]
-ADD CONSTRAINT [PK_StockTransferItems]
+-- Creating primary key on [Id] in table 'StocksTransferItems'
+ALTER TABLE [dbo].[StocksTransferItems]
+ADD CONSTRAINT [PK_StocksTransferItems]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -206,9 +206,9 @@ ADD CONSTRAINT [PK_Products]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'StockTransfers'
-ALTER TABLE [dbo].[StockTransfers]
-ADD CONSTRAINT [PK_StockTransfers]
+-- Creating primary key on [Id] in table 'StocksTransfers'
+ALTER TABLE [dbo].[StocksTransfers]
+ADD CONSTRAINT [PK_StocksTransfers]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -276,8 +276,8 @@ ON [dbo].[OrderItems]
     ([Product_Id]);
 GO
 
--- Creating foreign key on [Product_Id] in table 'StockTransferItems'
-ALTER TABLE [dbo].[StockTransferItems]
+-- Creating foreign key on [Product_Id] in table 'StocksTransferItems'
+ALTER TABLE [dbo].[StocksTransferItems]
 ADD CONSTRAINT [FK_ProductStockTransferItem]
     FOREIGN KEY ([Product_Id])
     REFERENCES [dbo].[Products]
@@ -287,7 +287,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ProductStockTransferItem'
 CREATE INDEX [IX_FK_ProductStockTransferItem]
-ON [dbo].[StockTransferItems]
+ON [dbo].[StocksTransferItems]
     ([Product_Id]);
 GO
 
@@ -306,23 +306,23 @@ ON [dbo].[Stocks]
     ([Warehouse_Id]);
 GO
 
--- Creating foreign key on [StockTransfer_Id] in table 'StockTransferItems'
-ALTER TABLE [dbo].[StockTransferItems]
+-- Creating foreign key on [StockTransfer_Id] in table 'StocksTransferItems'
+ALTER TABLE [dbo].[StocksTransferItems]
 ADD CONSTRAINT [FK_StockTransferStockTransferItem]
     FOREIGN KEY ([StockTransfer_Id])
-    REFERENCES [dbo].[StockTransfers]
+    REFERENCES [dbo].[StocksTransfers]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_StockTransferStockTransferItem'
 CREATE INDEX [IX_FK_StockTransferStockTransferItem]
-ON [dbo].[StockTransferItems]
+ON [dbo].[StocksTransferItems]
     ([StockTransfer_Id]);
 GO
 
--- Creating foreign key on [Departure_Id] in table 'StockTransfers'
-ALTER TABLE [dbo].[StockTransfers]
+-- Creating foreign key on [Departure_Id] in table 'StocksTransfers'
+ALTER TABLE [dbo].[StocksTransfers]
 ADD CONSTRAINT [FK_StockTransferWarehouse]
     FOREIGN KEY ([Departure_Id])
     REFERENCES [dbo].[Warehouses]
@@ -332,12 +332,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_StockTransferWarehouse'
 CREATE INDEX [IX_FK_StockTransferWarehouse]
-ON [dbo].[StockTransfers]
+ON [dbo].[StocksTransfers]
     ([Departure_Id]);
 GO
 
--- Creating foreign key on [Destination_Id] in table 'StockTransfers'
-ALTER TABLE [dbo].[StockTransfers]
+-- Creating foreign key on [Destination_Id] in table 'StocksTransfers'
+ALTER TABLE [dbo].[StocksTransfers]
 ADD CONSTRAINT [FK_StockTransferDestination]
     FOREIGN KEY ([Destination_Id])
     REFERENCES [dbo].[Warehouses]
@@ -347,7 +347,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_StockTransferDestination'
 CREATE INDEX [IX_FK_StockTransferDestination]
-ON [dbo].[StockTransfers]
+ON [dbo].[StocksTransfers]
     ([Destination_Id]);
 GO
 

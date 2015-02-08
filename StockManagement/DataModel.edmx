@@ -8,12 +8,12 @@
   <EntityContainer Name="comp1690ModelStoreContainer">
     <EntitySet Name="Stocks" EntityType="comp1690Model.Store.Stocks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Warehouses" EntityType="comp1690Model.Store.Warehouses" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="StockTransferItems" EntityType="comp1690Model.Store.StockTransferItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StocksTransferItems" EntityType="comp1690Model.Store.StocksTransferItems" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrderItems" EntityType="comp1690Model.Store.OrderItems" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Orders" EntityType="comp1690Model.Store.Orders" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Customers" EntityType="comp1690Model.Store.Customers" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Products" EntityType="comp1690Model.Store.Products" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="StockTransfers" EntityType="comp1690Model.Store.StockTransfers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StocksTransfers" EntityType="comp1690Model.Store.StocksTransfers" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="CustomerOrder" Association="comp1690Model.Store.CustomerOrder">
       <End Role="Customer" EntitySet="Customers" />
       <End Role="Order" EntitySet="Orders" />
@@ -32,22 +32,22 @@
     </AssociationSet>
     <AssociationSet Name="ProductStockTransferItem" Association="comp1690Model.Store.ProductStockTransferItem">
       <End Role="Product" EntitySet="Products" />
-      <End Role="StockTransferItem" EntitySet="StockTransferItems" />
+      <End Role="StockTransferItem" EntitySet="StocksTransferItems" />
     </AssociationSet>
     <AssociationSet Name="WarehouseStock" Association="comp1690Model.Store.WarehouseStock">
       <End Role="Warehouse" EntitySet="Warehouses" />
       <End Role="Stock" EntitySet="Stocks" />
     </AssociationSet>
     <AssociationSet Name="StockTransferStockTransferItem" Association="comp1690Model.Store.StockTransferStockTransferItem">
-      <End Role="StockTransfer" EntitySet="StockTransfers" />
-      <End Role="StockTransferItem" EntitySet="StockTransferItems" />
+      <End Role="StockTransfer" EntitySet="StocksTransfers" />
+      <End Role="StockTransferItem" EntitySet="StocksTransferItems" />
     </AssociationSet>
     <AssociationSet Name="StockTransferWarehouse" Association="comp1690Model.Store.StockTransferWarehouse">
-      <End Role="StockTransfer" EntitySet="StockTransfers" />
+      <End Role="StockTransfer" EntitySet="StocksTransfers" />
       <End Role="Warehouse" EntitySet="Warehouses" />
     </AssociationSet>
     <AssociationSet Name="StockTransferDestination" Association="comp1690Model.Store.StockTransferDestination">
-      <End Role="StockTransfer" EntitySet="StockTransfers" />
+      <End Role="StockTransfer" EntitySet="StocksTransfers" />
       <End Role="Warehouse" EntitySet="Warehouses" />
     </AssociationSet>
   </EntityContainer>
@@ -67,7 +67,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="StockTransferItems">
+  <EntityType Name="StocksTransferItems">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -121,9 +121,9 @@
     <Property Name="Price" Type="decimal" Nullable="false" />
     <Property Name="Weight" Type="float" Nullable="false" />
     <Property Name="BoxItemsAmount" Type="smallint" Nullable="false" />
-    <Property Name="QuantityTotal" Type="int" Nullable="false" />
+    <Property Name="QuantityTotal" Type="int" Nullable="false" DefaultValue="0" />
   </EntityType>
-  <EntityType Name="StockTransfers">
+  <EntityType Name="StocksTransfers">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -183,7 +183,7 @@
   </Association>
   <Association Name="ProductStockTransferItem">
     <End Role="Product" Type="comp1690Model.Store.Products" Multiplicity="1" />
-    <End Role="StockTransferItem" Type="comp1690Model.Store.StockTransferItems" Multiplicity="*" />
+    <End Role="StockTransferItem" Type="comp1690Model.Store.StocksTransferItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
         <PropertyRef Name="Id" />
@@ -206,8 +206,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="StockTransferStockTransferItem">
-    <End Role="StockTransfer" Type="comp1690Model.Store.StockTransfers" Multiplicity="1" />
-    <End Role="StockTransferItem" Type="comp1690Model.Store.StockTransferItems" Multiplicity="*" />
+    <End Role="StockTransfer" Type="comp1690Model.Store.StocksTransfers" Multiplicity="1" />
+    <End Role="StockTransferItem" Type="comp1690Model.Store.StocksTransferItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="StockTransfer">
         <PropertyRef Name="Id" />
@@ -218,7 +218,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="StockTransferWarehouse">
-    <End Role="StockTransfer" Type="comp1690Model.Store.StockTransfers" Multiplicity="*" />
+    <End Role="StockTransfer" Type="comp1690Model.Store.StocksTransfers" Multiplicity="*" />
     <End Role="Warehouse" Type="comp1690Model.Store.Warehouses" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Warehouse">
@@ -230,7 +230,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="StockTransferDestination">
-    <End Role="StockTransfer" Type="comp1690Model.Store.StockTransfers" Multiplicity="*" />
+    <End Role="StockTransfer" Type="comp1690Model.Store.StocksTransfers" Multiplicity="*" />
     <End Role="Warehouse" Type="comp1690Model.Store.Warehouses" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Warehouse">
@@ -248,7 +248,7 @@
         <EntityContainer Name="comp1690Entities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="Stocks" EntityType="comp1690Model.Stock" />
           <EntitySet Name="Warehouses" EntityType="comp1690Model.Warehouse" />
-          <EntitySet Name="StockTransferItems" EntityType="comp1690Model.StockTransferItem" />
+          <EntitySet Name="StocksTransferItems" EntityType="comp1690Model.StocksTransferItem" />
           <EntitySet Name="OrderItems" EntityType="comp1690Model.OrderItem" />
           <EntitySet Name="Orders" EntityType="comp1690Model.Order" />
           <EntitySet Name="Customers" EntityType="comp1690Model.Customer" />
@@ -271,23 +271,23 @@
           </AssociationSet>
           <AssociationSet Name="ProductStockTransferItem" Association="comp1690Model.ProductStockTransferItem">
             <End Role="Product" EntitySet="Products" />
-            <End Role="StockTransferItem" EntitySet="StockTransferItems" />
+            <End Role="StockTransferItem" EntitySet="StocksTransferItems" />
           </AssociationSet>
           <AssociationSet Name="WarehouseStock" Association="comp1690Model.WarehouseStock">
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
-          <EntitySet Name="StockTransfers" EntityType="comp1690Model.StockTransfer" />
+          <EntitySet Name="StocksTransfers" EntityType="comp1690Model.StocksTransfer" />
           <AssociationSet Name="StockTransferStockTransferItem" Association="comp1690Model.StockTransferStockTransferItem">
-            <End Role="StockTransfer" EntitySet="StockTransfers" />
-            <End Role="StockTransferItem" EntitySet="StockTransferItems" />
+            <End Role="StockTransfer" EntitySet="StocksTransfers" />
+            <End Role="StockTransferItem" EntitySet="StocksTransferItems" />
           </AssociationSet>
           <AssociationSet Name="StockTransferWarehouse" Association="comp1690Model.StockTransferWarehouse">
-            <End Role="StockTransfer" EntitySet="StockTransfers" />
+            <End Role="StockTransfer" EntitySet="StocksTransfers" />
             <End Role="Warehouse" EntitySet="Warehouses" />
           </AssociationSet>
           <AssociationSet Name="StockTransferDestination" Association="comp1690Model.StockTransferDestination">
-            <End Role="StockTransfer" EntitySet="StockTransfers" />
+            <End Role="StockTransfer" EntitySet="StocksTransfers" />
             <End Role="Warehouse" EntitySet="Warehouses" />
           </AssociationSet>
         </EntityContainer>
@@ -303,7 +303,7 @@
           <Property Name="Price" Type="Decimal" Nullable="false" />
           <Property Name="Weight" Type="Double" Nullable="false" />
           <Property Name="BoxItemsAmount" Type="Int16" Nullable="false" />
-          <Property Name="QuantityTotal" Type="Int32" Nullable="false" />
+          <Property Name="QuantityTotal" Type="Int32" Nullable="false" DefaultValue="0" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -322,7 +322,7 @@
           <NavigationProperty Name="Stocks" Relationship="comp1690Model.WarehouseStock" FromRole="Warehouse" ToRole="Stock" />
           <Property Name="Name" Type="String" Nullable="false" />
         </EntityType>
-        <EntityType Name="StockTransferItem">
+        <EntityType Name="StocksTransferItem">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -387,13 +387,13 @@
         </Association>
         <Association Name="ProductStockTransferItem">
           <End Type="comp1690Model.Product" Role="Product" Multiplicity="1" />
-          <End Type="comp1690Model.StockTransferItem" Role="StockTransferItem" Multiplicity="*" />
+          <End Type="comp1690Model.StocksTransferItem" Role="StockTransferItem" Multiplicity="*" />
         </Association>
         <Association Name="WarehouseStock">
           <End Type="comp1690Model.Warehouse" Role="Warehouse" Multiplicity="1" />
           <End Type="comp1690Model.Stock" Role="Stock" Multiplicity="*" />
         </Association>
-        <EntityType Name="StockTransfer">
+        <EntityType Name="StocksTransfer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -405,15 +405,15 @@
           <NavigationProperty Name="Destination" Relationship="comp1690Model.StockTransferDestination" FromRole="StockTransfer" ToRole="Warehouse" />
         </EntityType>
         <Association Name="StockTransferStockTransferItem">
-          <End Type="comp1690Model.StockTransfer" Role="StockTransfer" Multiplicity="1" />
-          <End Type="comp1690Model.StockTransferItem" Role="StockTransferItem" Multiplicity="*" />
+          <End Type="comp1690Model.StocksTransfer" Role="StockTransfer" Multiplicity="1" />
+          <End Type="comp1690Model.StocksTransferItem" Role="StockTransferItem" Multiplicity="*" />
         </Association>
         <Association Name="StockTransferWarehouse">
-          <End Type="comp1690Model.StockTransfer" Role="StockTransfer" Multiplicity="*" />
+          <End Type="comp1690Model.StocksTransfer" Role="StockTransfer" Multiplicity="*" />
           <End Type="comp1690Model.Warehouse" Role="Warehouse" Multiplicity="1" />
         </Association>
         <Association Name="StockTransferDestination">
-          <End Type="comp1690Model.StockTransfer" Role="StockTransfer" Multiplicity="*" />
+          <End Type="comp1690Model.StocksTransfer" Role="StockTransfer" Multiplicity="*" />
           <End Type="comp1690Model.Warehouse" Role="Warehouse" Multiplicity="1" />
         </Association>
       </Schema>
@@ -438,9 +438,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="StockTransferItems">
-      <EntityTypeMapping TypeName="IsTypeOf(comp1690Model.StockTransferItem)">
-        <MappingFragment StoreEntitySet="StockTransferItems">
+    <EntitySetMapping Name="StocksTransferItems">
+      <EntityTypeMapping TypeName="IsTypeOf(comp1690Model.StocksTransferItem)">
+        <MappingFragment StoreEntitySet="StocksTransferItems">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
         </MappingFragment>
@@ -494,9 +494,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="StockTransfers">
-      <EntityTypeMapping TypeName="IsTypeOf(comp1690Model.StockTransfer)">
-        <MappingFragment StoreEntitySet="StockTransfers">
+    <EntitySetMapping Name="StocksTransfers">
+      <EntityTypeMapping TypeName="IsTypeOf(comp1690Model.StocksTransfer)">
+        <MappingFragment StoreEntitySet="StocksTransfers">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Distance" ColumnName="Distance" />
@@ -535,7 +535,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="ProductStockTransferItem" TypeName="comp1690Model.ProductStockTransferItem" StoreEntitySet="StockTransferItems">
+    <AssociationSetMapping Name="ProductStockTransferItem" TypeName="comp1690Model.ProductStockTransferItem" StoreEntitySet="StocksTransferItems">
       <EndProperty Name="Product">
         <ScalarProperty Name="Id" ColumnName="Product_Id" />
       </EndProperty>
@@ -551,7 +551,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="StockTransferStockTransferItem" TypeName="comp1690Model.StockTransferStockTransferItem" StoreEntitySet="StockTransferItems">
+    <AssociationSetMapping Name="StockTransferStockTransferItem" TypeName="comp1690Model.StockTransferStockTransferItem" StoreEntitySet="StocksTransferItems">
       <EndProperty Name="StockTransfer">
         <ScalarProperty Name="Id" ColumnName="StockTransfer_Id" />
       </EndProperty>
@@ -559,7 +559,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="StockTransferWarehouse" TypeName="comp1690Model.StockTransferWarehouse" StoreEntitySet="StockTransfers">
+    <AssociationSetMapping Name="StockTransferWarehouse" TypeName="comp1690Model.StockTransferWarehouse" StoreEntitySet="StocksTransfers">
       <EndProperty Name="Warehouse">
         <ScalarProperty Name="Id" ColumnName="Departure_Id" />
       </EndProperty>
@@ -567,7 +567,7 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="StockTransferDestination" TypeName="comp1690Model.StockTransferDestination" StoreEntitySet="StockTransfers">
+    <AssociationSetMapping Name="StockTransferDestination" TypeName="comp1690Model.StockTransferDestination" StoreEntitySet="StocksTransfers">
       <EndProperty Name="Warehouse">
         <ScalarProperty Name="Id" ColumnName="Destination_Id" />
       </EndProperty>

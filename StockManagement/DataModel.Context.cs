@@ -27,11 +27,11 @@ namespace StockManagement
     
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
-        public virtual DbSet<StockTransferItem> StockTransferItems { get; set; }
+        public virtual DbSet<StocksTransferItem> StocksTransferItems { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<StockTransfer> StockTransfers { get; set; }
+        public virtual DbSet<StocksTransfer> StocksTransfers { get; set; }
     }
 }

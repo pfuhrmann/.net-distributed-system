@@ -12,18 +12,18 @@ namespace StockManagement
     using System;
     using System.Collections.Generic;
     
-    public partial class StockTransfer
+    public partial class StocksTransfer
     {
-        public StockTransfer()
+        public StocksTransfer()
         {
-            this.StockTransferItems = new ObservableListSource<StockTransferItem>();
+            this.StockTransferItems = new ObservableListSource<StocksTransferItem>();
         }
     
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public double Distance { get; set; }
     
-        public virtual ObservableListSource<StockTransferItem> StockTransferItems { get; set; }
+        public virtual ObservableListSource<StocksTransferItem> StockTransferItems { get; set; }
         public virtual Warehouse Departure { get; set; }
         public virtual Warehouse Destination { get; set; }
     }
