@@ -51,6 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataGridViewPriceTextBoxCell.cs" />
+    <Compile Include="DataGridViewPriceTextBoxEditingControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ManageProductsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +95,10 @@
     <ProjectReference Include="..\DataModel\DataModel.csproj">
       <Project>{ce4f0c1e-8dc3-4335-9aba-88142acc7c62}</Project>
       <Name>DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PriceTextBoxComponent\PriceTextBoxComponent.csproj">
+      <Project>{8ad7c343-e5dc-445e-a726-604e2beffb6a}</Project>
+      <Name>PriceTextBoxComponent</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

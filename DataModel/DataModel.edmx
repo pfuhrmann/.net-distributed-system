@@ -303,7 +303,7 @@
           <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
           <Property Name="Weight" Type="Decimal" Nullable="false" Precision="7" Scale="2" />
           <Property Name="BoxItemsAmount" Type="Int16" Nullable="false" />
-          <Property Name="StockTotal" Type="Int32" Nullable="false" DefaultValue="0" />
+          <Property Name="StockTotal" Nullable="false" DefaultValue="0" Type="Int32" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>

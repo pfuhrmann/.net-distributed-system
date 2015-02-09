@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
 using DataModel;
@@ -24,36 +20,26 @@ namespace StockManagement
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            _context = new comp1690Entities();
 
-            // Call the Load method to get the data for the given DbSet
-            // from the database.
-            // The data is materialized as entities. The entities are managed by
-            // the DbContext instance.
+            // Initialize DB context
+            _context = new comp1690Entities();
             _context.Products.Load();
             _context.Warehouses.Load();
 
-           /* this.warehouseBindingSource.DataSource =
-                _context.Warehouses.Local.ToBindingList();*/
-
-            // Bind the categoryBindingSource.DataSource to
-            // all the Unchanged, Modified and Added Category objects that
-            // are currently tracked by the DbContext.
-            // Note that we need to call ToBindingList() on the
-            // ObservableCollection<TEntity> returned by
-            // the DbSet.Local property to get the BindingList<T>
-            // in order to facilitate two-way binding in WinForms.
             this.productBindingSource.DataSource =
                 _context.Products.Local.ToBindingList();
 
-            DataGridViewComboBoxColumn box = this.DataGridViewComboBoxColumn;
-            box.DataPropertyName = "Warehouse_Id";
-            box.DataSource = _context.Warehouses.Local.ToBindingList();
-            box.DisplayMember = "Name";
-            box.ValueMember = "Id";
+            // Attach custom EditBox to Price column
+            var priceColumn = this.dataGridViewTextBoxColumn3;
+            var cell = new DataGridViewPriceTextBoxCell();
+            priceColumn.CellTemplate = cell;
 
-            DataGridView grid = this.stocksDataGridView;
-            DataGridView grid2 = grid;
+            // Modify Warehouse column in Stocks grid
+            var warehouseColumn = this.DataGridViewComboBoxColumn;
+            warehouseColumn.DataPropertyName = "Warehouse_Id";
+            warehouseColumn.DataSource = _context.Warehouses.Local.ToBindingList();
+            warehouseColumn.DisplayMember = "Name";
+            warehouseColumn.ValueMember = "Id";
         }
 
         private void productBindingNavigatorSaveItem_Click(object sender, EventArgs e)
