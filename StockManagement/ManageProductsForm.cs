@@ -31,6 +31,10 @@ namespace StockManagement
             // The data is materialized as entities. The entities are managed by
             // the DbContext instance.
             _context.Products.Load();
+            _context.Warehouses.Load();
+
+           /* this.warehouseBindingSource.DataSource =
+                _context.Warehouses.Local.ToBindingList();*/
 
             // Bind the categoryBindingSource.DataSource to
             // all the Unchanged, Modified and Added Category objects that
@@ -41,6 +45,15 @@ namespace StockManagement
             // in order to facilitate two-way binding in WinForms.
             this.productBindingSource.DataSource =
                 _context.Products.Local.ToBindingList();
+
+            DataGridViewComboBoxColumn box = this.DataGridViewComboBoxColumn;
+            box.DataPropertyName = "Warehouse_Id";
+            box.DataSource = _context.Warehouses.Local.ToBindingList();
+            box.DisplayMember = "Name";
+            box.ValueMember = "Id";
+
+            DataGridView grid = this.stocksDataGridView;
+            DataGridView grid2 = grid;
         }
 
         private void productBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -75,21 +88,45 @@ namespace StockManagement
             this.productDataGridView.Refresh();
 
             // Update status label
-            this.Invoke((MethodInvoker)delegate
-            {
-                this.toolStripStatusLabel1.Text = "Saved!";
-                this.statusStrip1.Refresh();
-                System.Threading.Thread.Sleep(1000);
-                this.toolStripStatusLabel1.Text = "";
-                this.statusStrip1.Refresh();
-            });
-            
+            UpdateLabel("Saved!", System.Drawing.Color.ForestGreen, true);
+        }
+
+        
+
+        private void productDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Change occured, show it in label
+            // Update status label
+            UpdateLabel("State updated, save your changes", System.Drawing.Color.DarkOrange);
+        }
+
+        private void ManageProductsForm_Shown(object sender, EventArgs e)
+        {
+            this.productDataGridView.CellValueChanged += 
+                new DataGridViewCellEventHandler(productDataGridView_CellValueChanged);
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
             base.OnClosing(e);
             this._context.Dispose();
+        }
+
+        private void UpdateLabel(string text, Color color, bool flash = false)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                this.toolStripStatusLabel1.Text = text;
+                this.toolStripStatusLabel1.ForeColor = color;
+                this.statusStrip1.Refresh();
+
+                if (flash)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    this.toolStripStatusLabel1.Text = "";
+                    this.statusStrip1.Refresh();
+                }
+            });
         }
     }
 }

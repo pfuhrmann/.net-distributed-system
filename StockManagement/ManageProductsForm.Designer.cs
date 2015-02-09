@@ -47,21 +47,23 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.productBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.productDataGridView = new System.Windows.Forms.DataGridView();
-            this.stocksBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.stocksDataGridView = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stocksBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.stocksDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Warehouse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewComboBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewComboBoxColumn2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.warehouseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.productBindingNavigator)).BeginInit();
             this.productBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
@@ -71,6 +73,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.warehouseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // productBindingNavigator
@@ -220,60 +223,6 @@
             this.productDataGridView.Size = new System.Drawing.Size(661, 204);
             this.productDataGridView.TabIndex = 1;
             // 
-            // stocksBindingSource
-            // 
-            this.stocksBindingSource.DataMember = "Stocks";
-            this.stocksBindingSource.DataSource = this.productBindingSource;
-            // 
-            // stocksDataGridView
-            // 
-            this.stocksDataGridView.AutoGenerateColumns = false;
-            this.stocksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.stocksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.Warehouse});
-            this.stocksDataGridView.DataSource = this.stocksBindingSource;
-            this.stocksDataGridView.Location = new System.Drawing.Point(12, 27);
-            this.stocksDataGridView.Name = "stocksDataGridView";
-            this.stocksDataGridView.Size = new System.Drawing.Size(360, 227);
-            this.stocksDataGridView.TabIndex = 2;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.productDataGridView);
-            this.groupBox1.Location = new System.Drawing.Point(12, 28);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(692, 239);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Products";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.stocksDataGridView);
-            this.groupBox2.Location = new System.Drawing.Point(104, 282);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(378, 269);
-            this.groupBox2.TabIndex = 3;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Stock Control";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 567);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(724, 22);
-            this.statusStrip1.TabIndex = 4;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
@@ -327,11 +276,23 @@
             this.TotalStock.ReadOnly = true;
             this.TotalStock.Width = 80;
             // 
-            // dataGridViewTextBoxColumn7
+            // stocksBindingSource
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.stocksBindingSource.DataMember = "Stocks";
+            this.stocksBindingSource.DataSource = this.productBindingSource;
+            // 
+            // stocksDataGridView
+            // 
+            this.stocksDataGridView.AutoGenerateColumns = false;
+            this.stocksDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.stocksDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn8,
+            this.DataGridViewComboBoxColumn});
+            this.stocksDataGridView.DataSource = this.stocksBindingSource;
+            this.stocksDataGridView.Location = new System.Drawing.Point(15, 19);
+            this.stocksDataGridView.Name = "stocksDataGridView";
+            this.stocksDataGridView.Size = new System.Drawing.Size(264, 227);
+            this.stocksDataGridView.TabIndex = 2;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -339,12 +300,67 @@
             this.dataGridViewTextBoxColumn8.HeaderText = "Quantity";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             // 
-            // Warehouse
+            // DataGridViewComboBoxColumn
             // 
-            this.Warehouse.DataPropertyName = "Warehouse";
-            this.Warehouse.HeaderText = "Warehouse";
-            this.Warehouse.Name = "Warehouse";
-            this.Warehouse.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewComboBoxColumn.HeaderText = "Warehouse";
+            this.DataGridViewComboBoxColumn.Name = "DataGridViewComboBoxColumn";
+            this.DataGridViewComboBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewComboBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.productDataGridView);
+            this.groupBox1.Location = new System.Drawing.Point(12, 28);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(692, 239);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Products";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.stocksDataGridView);
+            this.groupBox2.Location = new System.Drawing.Point(192, 286);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(293, 260);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Stock Control";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 567);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(724, 22);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // dataGridViewComboBoxColumn1
+            // 
+            this.dataGridViewComboBoxColumn1.DataPropertyName = "Warehouse";
+            this.dataGridViewComboBoxColumn1.HeaderText = "Warehouse";
+            this.dataGridViewComboBoxColumn1.Name = "dataGridViewComboBoxColumn1";
+            this.dataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // dataGridViewComboBoxColumn2
+            // 
+            this.dataGridViewComboBoxColumn2.DataPropertyName = "Warehouse";
+            this.dataGridViewComboBoxColumn2.HeaderText = "Warehouse";
+            this.dataGridViewComboBoxColumn2.Name = "dataGridViewComboBoxColumn2";
+            this.dataGridViewComboBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewComboBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // warehouseBindingSource
+            // 
+            this.warehouseBindingSource.DataSource = typeof(DataModel.Warehouse);
             // 
             // ManageProductsForm
             // 
@@ -357,6 +373,7 @@
             this.Controls.Add(this.productBindingNavigator);
             this.Name = "ManageProductsForm";
             this.Text = "Manage Products";
+            this.Shown += new System.EventHandler(this.ManageProductsForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.productBindingNavigator)).EndInit();
             this.productBindingNavigator.ResumeLayout(false);
             this.productBindingNavigator.PerformLayout();
@@ -368,6 +385,7 @@
             this.groupBox2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.warehouseBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -402,9 +420,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalStock;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn2;
+        private System.Windows.Forms.BindingSource warehouseBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Warehouse;
+        private System.Windows.Forms.DataGridViewComboBoxColumn DataGridViewComboBoxColumn;
     }
 }
 
