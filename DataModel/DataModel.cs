@@ -10,6 +10,7 @@ namespace DataModel
         public DataModel()
             : base("name=DataModel")
         {
+            Database.SetInitializer(new DatabaseContextInitializer());
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
