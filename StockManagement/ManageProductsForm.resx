@@ -195,6 +195,17 @@
         dtINAGGiDUDGyGpoawAxeNSAQWkAORiqnRLAwAAA9EMMU8Daa3MAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEXSURBVDhPrdJLS8NAFIbhKngFQUSUIJNFYgjGmkUMBEwU
+        RBem6kJRBHUh9QIFERT/gYsuvC0EF/5a369S6BArCn7wcJi0c5gzSe0/Mo1NXOEaR1jEEPrGoFWW5Tv1
+        Eme4ybLskbqBbzdP4Bx3WMUUxuGjWRTFK3UZlSylafpE3fpaWpmDGp5gVA96sw79uNBZ2dERT9HCrB70
+        Rse7R9xZ2RmD5tWF6fKszPu+36YeQrN1M4A61HQXg7Aygr0kSd6oB9ClaLYV3OZ5/kHV/JWNyiT2wzB8
+        dl237TjOQxzHanSB4yiKdLMFdIpKhqE51b0B/XEGOn4jCIIfN/eLmu54nvdCXYPe/a+jzdvGmO7X9Kfo
+        Ivl+a+YTZvcigdV4EagAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="TotalStock.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -206,9 +217,6 @@
   </metadata>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>544, 17</value>
-  </metadata>
-  <metadata name="TotalStock.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
   </metadata>
   <metadata name="warehouseBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>660, 17</value>
