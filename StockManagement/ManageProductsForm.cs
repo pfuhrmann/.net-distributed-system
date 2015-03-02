@@ -146,5 +146,34 @@ namespace StockManagement
             var warehouseColumn = DataGridViewComboBoxColumn;
             warehouseColumn.DataSource = data;
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            // Reset label
+            toolStripLabel2.Text = "";
+
+            var filterType = toolStripComboBox1.SelectedIndex;
+            switch (filterType)
+            {
+                // Filter by Name
+                case 0:
+                    var text = toolStripTextBox1.Text;
+                    productBindingSource.DataSource = 
+                        _context.Products.Local.ToBindingList().Where(p => p.Name.Contains(text));
+                    break;
+                // Filter by Id
+                case 1:
+                    try
+                    {
+                        var id = Int32.Parse(toolStripTextBox1.Text);
+                        productBindingSource.DataSource = _context.Products.Find(id);
+                    }
+                    catch (FormatException)
+                    {
+                        toolStripLabel2.Text = "ID must be number";
+                    }
+                    break;
+            }
+        }
     }
 }
