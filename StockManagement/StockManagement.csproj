@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">
-      <Project>{ce4f0c1e-8dc3-4335-9aba-88142acc7c62}</Project>
+      <Project>{8523eee8-13ba-471b-bcea-59456fe00db0}</Project>
       <Name>DataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\PriceTextBoxComponent\PriceTextBoxComponent.csproj">

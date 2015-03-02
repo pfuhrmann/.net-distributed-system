@@ -5,13 +5,12 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using DataModel;
 
 namespace StockManagement
 {
     public partial class ManageProductsForm : Form
     {
-        private comp1690Entities _context;
+        private DataModel.DataModel _context;
 
         public ManageProductsForm()
         {
@@ -21,22 +20,25 @@ namespace StockManagement
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
+            
             // Initialize DB context
-            _context = new comp1690Entities();
+            _context = new DataModel.DataModel();
             _context.Products.Load();
             _context.Warehouses.Load();
 
             productBindingSource.DataSource =
                 _context.Products.Local.ToBindingList();
 
-            // Attach custom EditBox to Price column
+            // Add Price column
             var priceColumn = new DataGridViewTextBoxColumn();
             var cell = new DataGridViewPriceTextBoxCell();
+            priceColumn.DataPropertyName = "Price";
             priceColumn.CellTemplate = cell;
             priceColumn.Name = "Price";
+            priceColumn.HeaderText = "Price (£)";
+            priceColumn.Width = 80;
             var grid = productDataGridView;
-            grid.Columns.Add(priceColumn);
+            grid.Columns.Insert(2, priceColumn);
 
             // Modify Warehouse column in Stocks grid
             var warehouseColumn = DataGridViewComboBoxColumn;

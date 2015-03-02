@@ -32,7 +32,7 @@ namespace PriceTextBoxComponent
         {
             base.OnKeyPress(e);
 
-            if (!Char.IsDigit(e.KeyChar))
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
