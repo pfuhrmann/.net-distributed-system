@@ -12,8 +12,6 @@ namespace PriceTextBoxComponent
         public PriceTextBox()
         {
             InitializeComponent();
-
-            ForeColor = _plainColor;
         }
 
         public Color WarningColor
@@ -34,18 +32,32 @@ namespace PriceTextBoxComponent
         {
             base.OnKeyPress(e);
 
-            if (Char.IsDigit(e.KeyChar))
+            if (!Char.IsDigit(e.KeyChar))
             {
-                var value = Double.Parse(e.KeyChar.ToString());
+                e.Handled = true;
+            }
+        }
 
-                if (value > 500.0)
+        protected override void OnTextChanged(EventArgs e)
+        {
+            // Call the base OnTextChanged method. 
+            base.OnTextChanged(e);
+
+            if (!String.IsNullOrEmpty(Text))
+            {
+                try
+                {
+                    var value = Double.Parse(Text);
+
+                    if (value > 500.0)
+                    {
+                        ForeColor = _warningColor;
+                    }
+                }
+                catch (Exception)
                 {
                     ForeColor = _warningColor;
                 }
-            }
-            else
-            {
-                e.Handled = true;
             }
         }
     }

@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Data.Entity;
 
 namespace DataModel
@@ -12,7 +10,10 @@ namespace DataModel
     {
         private IBindingList _bindingList;
 
-        bool IListSource.ContainsListCollection { get { return false; } }
+        bool IListSource.ContainsListCollection
+        {
+            get { return false; }
+        }
 
         IList IListSource.GetList()
         {

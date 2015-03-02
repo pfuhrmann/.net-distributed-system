@@ -22,14 +22,12 @@ namespace StockManagement
         private bool repositionOnValueChange;
         private int rowIndex;
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.DataGridViewTextBoxEditingControl"]/*' />
         public DataGridViewPriceTextBoxEditingControl()
             : base()
         {
             this.TabStop = false;
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.EditingControlDataGridView"]/*' />
         public virtual DataGridView EditingControlDataGridView
         {
             get
@@ -42,7 +40,6 @@ namespace StockManagement
             }
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.EditingControlFormattedValue"]/*' />
         public virtual object EditingControlFormattedValue
         {
             get
@@ -55,7 +52,6 @@ namespace StockManagement
             }
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.EditingControlRowIndex"]/*' />
         public virtual int EditingControlRowIndex
         {
             get
@@ -68,7 +64,6 @@ namespace StockManagement
             }
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.EditingControlValueChanged"]/*' />
         public virtual bool EditingControlValueChanged
         {
             get
@@ -81,7 +76,6 @@ namespace StockManagement
             }
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.EditingPanelCursor"]/*' />
         public virtual Cursor EditingPanelCursor
         {
             get
@@ -90,7 +84,6 @@ namespace StockManagement
             }
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.RepositionEditingControlOnValueChange"]/*' />
         public virtual bool RepositionEditingControlOnValueChange
         {
             get
@@ -99,7 +92,6 @@ namespace StockManagement
             }
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.ApplyCellStyleToEditingControl"]/*' />
         public virtual void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
         {
             this.Font = dataGridViewCellStyle.Font;
@@ -123,7 +115,6 @@ namespace StockManagement
             this.repositionOnValueChange = (dataGridViewCellStyle.WrapMode == DataGridViewTriState.True && (dataGridViewCellStyle.Alignment & anyTop) == 0);
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.EditingControlWantsInputKey"]/*' />
         public virtual bool EditingControlWantsInputKey(Keys keyData, bool dataGridViewWantsInputKey)
         {
             switch (keyData & Keys.KeyCode)
@@ -202,13 +193,11 @@ namespace StockManagement
             return !dataGridViewWantsInputKey;
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.GetEditingControlFormattedValue"]/*' />
         public virtual object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
         {
             return this.Text;
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.IDataGridViewEditingControl.PrepareEditingControlForEdit"]/*' />
         public virtual void PrepareEditingControlForEdit(bool selectAll)
         {
             if (selectAll)
@@ -229,7 +218,6 @@ namespace StockManagement
             this.dataGridView.NotifyCurrentCellDirty(true);
         }
 
-        /// <include file='doc\DataGridViewTextBoxEditingControl.uex' path='docs/doc[@for="DataGridViewTextBoxEditingControl.OnTextChanged"]/*' />
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
