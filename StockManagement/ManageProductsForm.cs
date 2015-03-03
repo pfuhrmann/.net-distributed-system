@@ -134,16 +134,15 @@ namespace StockManagement
                         break;
                     }
 
-                    toolStripLabel2.Text = "ID must be number";
+                    toolStripLabel2.Text = "ID value must be numeric";
                     break;
             }
         }
 
         private void generalDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            // Change occured, show it in label
-            // Update status label
-            UpdateLabel("State updated, save your changes", Color.DarkOrange);
+            // Change in state occured, show it in label
+            UpdateLabel("State updated, please save your changes", Color.DarkOrange);
         }
 
         private void productDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -161,17 +160,23 @@ namespace StockManagement
                 if (value > 500)
                 {
                     cell.Style.ForeColor = Color.Red;
+                    return;
                 }
-                else
-                {
-                    cell.Style.ForeColor = Color.Black;
-                }
+
+                cell.Style.ForeColor = Color.Black;
             }
         }
 
         private void productDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             var errorText = "";
+
+            // Validate value not empty
+            if (String.IsNullOrEmpty(e.FormattedValue.ToString()))
+            {
+                errorText = "Value cannot be empty";
+                e.Cancel = true;
+            }
 
             // Validate the Weight entry
             if (productDataGridView.Columns[e.ColumnIndex].Name == "Weight")
@@ -206,7 +211,15 @@ namespace StockManagement
 
         private void stocksDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            // Validate stock Quantity entry
+            // Validate value not empty
+            if (String.IsNullOrEmpty(e.FormattedValue.ToString()))
+            {
+                stocksDataGridView.Rows[e.RowIndex].ErrorText = "Value cannot be empty";
+                e.Cancel = true;
+                return;
+            }
+
+            // Validate Quantity entry
             if (stocksDataGridView.Columns[e.ColumnIndex].Name == "Quantity")
             {
                 int num;
