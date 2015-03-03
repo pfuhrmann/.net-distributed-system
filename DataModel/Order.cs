@@ -21,7 +21,7 @@ namespace DataModel
         [Required]
         public string Status { get; set; }
 
-        public int Customer_Id { get; set; }
+        public string Customer_Id { get; set; }
 
         public virtual Customer Customer { get; set; }
 

@@ -5,27 +5,21 @@ namespace DataModel
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    public partial class Customer
+    public class Customer : IdentityUser
     {
         public Customer()
         {
             Orders = new ObservableListSource<Order>();
         }
 
-        public int Id { get; set; }
-
         [Required]
         public string FirstName { get; set; }
 
         [Required]
         public string LastName { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
-        [Required]
-        public string Password { get; set; }
 
         public bool Gender { get; set; }
 

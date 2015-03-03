@@ -1,15 +1,16 @@
 using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DataModel
 {
-    public class DataModel : DbContext
+    public class DataModel : IdentityDbContext<Customer>
     {
         public DataModel() : base("name=DataModel")
         {
             Database.SetInitializer(new DatabaseContextInitializer());
         }
 
-        public virtual DbSet<Customer> Customers { get; set; }
+
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
@@ -21,6 +22,8 @@ namespace DataModel
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Customer>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Customer)
