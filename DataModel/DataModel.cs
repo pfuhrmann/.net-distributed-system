@@ -1,14 +1,10 @@
+using System.Data.Entity;
+
 namespace DataModel
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
-    public partial class DataModel : DbContext
+    public class DataModel : DbContext
     {
-        public DataModel()
-            : base("name=DataModel")
+        public DataModel() : base("name=DataModel")
         {
             Database.SetInitializer(new DatabaseContextInitializer());
         }
@@ -20,7 +16,7 @@ namespace DataModel
         public virtual DbSet<Stock> Stocks { get; set; }
         public virtual DbSet<StocksTransferItem> StocksTransferItems { get; set; }
         public virtual DbSet<StocksTransfer> StocksTransfers { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<sysdiagram> Sysdiagrams { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -36,10 +32,6 @@ namespace DataModel
                 .WithRequired(e => e.Order)
                 .HasForeignKey(e => e.Order_Id)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product>()
-                .Property(e => e.Weight)
-                .HasPrecision(7, 2);
 
             modelBuilder.Entity<Product>()
                 .HasMany(e => e.OrderItems)

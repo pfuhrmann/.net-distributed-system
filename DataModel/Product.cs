@@ -19,7 +19,7 @@ namespace DataModel
         public string Name { get; set; }
 
         public short Price { get; set; }
-        public decimal Weight { get; set; }
+        public short Weight { get; set; }
         public short BoxItemsAmount { get; set; }
 
         [NotMapped]

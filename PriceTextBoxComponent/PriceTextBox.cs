@@ -53,6 +53,10 @@ namespace PriceTextBoxComponent
                     {
                         ForeColor = _warningColor;
                     }
+                    else
+                    {
+                        ForeColor = _plainColor;
+                    }
                 }
                 catch (Exception)
                 {

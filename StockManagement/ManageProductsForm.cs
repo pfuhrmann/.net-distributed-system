@@ -42,17 +42,35 @@ namespace StockManagement
             grid.Columns.Insert(2, priceColumn);
 
             // Modify Warehouse column in Stocks grid
-            var warehouseColumn = (DataGridViewComboBoxColumn)DataGridViewComboBoxColumn;
+            var warehouseColumn = DataGridViewComboBoxColumn;
             warehouseColumn.DataPropertyName = "Warehouse_Id";
             warehouseColumn.DisplayMember = "Name";
             warehouseColumn.ValueMember = "Id";
             InitializeWarehouseDataSource();
         }
 
+        private void ManageProductsForm_Shown(object sender, EventArgs e)
+        {
+            // Attach events to Products grid view
+            productDataGridView.CellValueChanged +=
+                generalDataGridView_CellValueChanged;
+            productDataGridView.CellFormatting +=
+                productDataGridView_CellFormatting;
+            productDataGridView.CellValidating +=
+                productDataGridView_CellValidating;
+
+            // Attach events to Stocks grid view
+            stocksDataGridView.CellValueChanged +=
+                generalDataGridView_CellValueChanged;
+            stocksDataGridView.CellValidating +=
+                stocksDataGridView_CellValidating;
+        }
+
         private void productBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             Validate();
 
+            // Removing disconected entities
             foreach (var stock in _context.Stocks.Local.ToList())
             {
                 if (stock.Product == null)
@@ -69,10 +87,8 @@ namespace StockManagement
             // Removing placeholder warehouse
             var warehouse = _context.Warehouses.Find(0);
             _context.Warehouses.Remove(warehouse);
-
             // Save the changes to the database.
             _context.SaveChanges();
-
             // Reentering placeholder warehouse
             InitializeWarehouseDataSource();
 
@@ -85,6 +101,44 @@ namespace StockManagement
             UpdateLabel("Saved!", Color.ForestGreen, true);
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            // Reset label
+            toolStripLabel2.Text = "";
+
+            var text = toolStripTextBox1.Text;
+            var filterType = toolStripComboBox1.SelectedIndex;
+            switch (filterType)
+            {
+                // Filter by Name
+                case 0:
+                    productBindingSource.DataSource =
+                        _context.Products.Local
+                            .ToBindingList().Where(p => p.Name.Contains(text));
+                    break;
+                // Filter by ID
+                case 1:
+                    // No ID provided, return all results
+                    if (String.IsNullOrEmpty(text))
+                    {
+                        productBindingSource.DataSource =
+                            _context.Products.Local.ToBindingList();
+                        break;
+                    }
+
+                    int id;
+                    if (Int32.TryParse(text, out id))
+                    {
+                        productBindingSource.DataSource =
+                            _context.Products.Find(id);
+                        break;
+                    }
+
+                    toolStripLabel2.Text = "ID must be number";
+                    break;
+            }
+        }
+
         private void generalDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             // Change occured, show it in label
@@ -94,26 +148,76 @@ namespace StockManagement
 
         private void productDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == productDataGridView.Columns["Price"].Index && e.Value != null)
+            if (e.ColumnIndex < 0)
             {
+                return;
+            }
+
+            // Change Price to red if value is higher than 500
+            if (productDataGridView.Columns[e.ColumnIndex].Name == "Price" && e.Value != null)
+            {
+                var cell = productDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 var value = Double.Parse(e.Value.ToString());
                 if (value > 500)
                 {
-                    var cell = productDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                     cell.Style.ForeColor = Color.Red;
+                }
+                else
+                {
+                    cell.Style.ForeColor = Color.Black;
                 }
             }
         }
 
-        private void ManageProductsForm_Shown(object sender, EventArgs e)
+        private void productDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            // Attach events to Products grid view
-            productDataGridView.CellValueChanged +=
-                generalDataGridView_CellValueChanged;
-            productDataGridView.CellFormatting +=
-                productDataGridView_CellFormatting;
-            stocksDataGridView.CellValueChanged +=
-                generalDataGridView_CellValueChanged;
+            var errorText = "";
+
+            // Validate the Weight entry
+            if (productDataGridView.Columns[e.ColumnIndex].Name == "Weight")
+            {
+                int num;
+                if (!Int32.TryParse(e.FormattedValue.ToString(), out num))
+                {
+                    errorText = "Weight value must be numeric";
+                    e.Cancel = true;
+                }
+            }
+
+            // Validate the Box Items entry
+            if (productDataGridView.Columns[e.ColumnIndex].Name == "BoxItemsAmount")
+            {
+                int num;
+                if (!Int32.TryParse(e.FormattedValue.ToString(), out num))
+                {
+                    errorText = "Box Items value must be numeric";
+                    e.Cancel = true;
+                }
+            }
+
+            // Handle validation error
+            if (!String.IsNullOrEmpty(errorText))
+            {
+                productDataGridView.Rows[e.RowIndex].ErrorText = errorText;
+                return;
+            }
+            productDataGridView.Rows[e.RowIndex].ErrorText = "";
+        }
+
+        private void stocksDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            // Validate stock Quantity entry
+            if (stocksDataGridView.Columns[e.ColumnIndex].Name == "Quantity")
+            {
+                int num;
+                if (!Int32.TryParse(e.FormattedValue.ToString(), out num))
+                {
+                    stocksDataGridView.Rows[e.RowIndex].ErrorText = "Quantity value must be numeric";
+                    e.Cancel = true;
+                    return;
+                }
+                stocksDataGridView.Rows[e.RowIndex].ErrorText = "";
+            }
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -142,38 +246,9 @@ namespace StockManagement
         private void InitializeWarehouseDataSource()
         {
             var data = _context.Warehouses.Local.ToBindingList();
-            data.Insert(0, new Warehouse { Id = 0, Name = "Select warehouse" });
+            data.Insert(0, new Warehouse {Id = 0, Name = "Select warehouse"});
             var warehouseColumn = DataGridViewComboBoxColumn;
             warehouseColumn.DataSource = data;
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            // Reset label
-            toolStripLabel2.Text = "";
-
-            var filterType = toolStripComboBox1.SelectedIndex;
-            switch (filterType)
-            {
-                // Filter by Name
-                case 0:
-                    var text = toolStripTextBox1.Text;
-                    productBindingSource.DataSource = 
-                        _context.Products.Local.ToBindingList().Where(p => p.Name.Contains(text));
-                    break;
-                // Filter by Id
-                case 1:
-                    try
-                    {
-                        var id = Int32.Parse(toolStripTextBox1.Text);
-                        productBindingSource.DataSource = _context.Products.Find(id);
-                    }
-                    catch (FormatException)
-                    {
-                        toolStripLabel2.Text = "ID must be number";
-                    }
-                    break;
-            }
         }
     }
 }
