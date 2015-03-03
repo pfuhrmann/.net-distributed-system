@@ -1,13 +1,12 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace DataModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-
     public class Customer : IdentityUser
     {
         public Customer()
@@ -22,11 +21,7 @@ namespace DataModel
         public string LastName { get; set; }
 
         public bool Gender { get; set; }
-
         public DateTime DOB { get; set; }
-
-        [Required]
-        public string Phone { get; set; }
 
         [Required]
         public string AddressLine1 { get; set; }
@@ -41,5 +36,13 @@ namespace DataModel
         public string Town { get; set; }
 
         public virtual ObservableListSource<Order> Orders { get; set; }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Customer> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
     }
 }

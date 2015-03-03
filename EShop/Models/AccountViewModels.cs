@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EShop.Models
@@ -64,21 +65,62 @@ namespace EShop.Models
 
     public class RegisterViewModel
     {
+        // ACCOUNT
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
+        [Phone]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
+
+        [Required]
+        [Display(Name = "Date Of Birth")]
+        [DisplayFormat(DataFormatString="{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
+        public DateTime DOB { get; set; }
+
+        [Required]
+        [Display(Name = "Gender")]
+        public bool Gender { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
+        
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        // ADDRESS
+        [Required]
+        [Display(Name = "Address Line 1")]
+        public string AddressLine1 { get; set; }
+
+        [Required]
+        [Display(Name = "Address Line 2")]
+        public string AddressLine2 { get; set; }
+
+        [Required]
+        [Display(Name = "Town/City")]
+        public string Town { get; set; }
+
+        [Required]
+        [Display(Name = "Postcode")]
+        public string Postcode { get; set; }
     }
 
     public class ResetPasswordViewModel

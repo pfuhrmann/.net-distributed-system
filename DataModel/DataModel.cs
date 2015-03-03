@@ -10,6 +10,10 @@ namespace DataModel
             Database.SetInitializer(new DatabaseContextInitializer());
         }
 
+        public static DataModel Create()
+        {
+            return new DataModel();
+        }
 
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
