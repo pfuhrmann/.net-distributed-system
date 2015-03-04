@@ -18,8 +18,14 @@ namespace DataModel
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public short Price { get; set; }
+
+        [Required]
         public short Weight { get; set; }
+
+        [Required]
         public short BoxItemsAmount { get; set; }
 
         [NotMapped]

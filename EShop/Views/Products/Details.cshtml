@@ -1,50 +1,57 @@
-﻿@model DataModel.Product
-
+﻿@model EShop.Models.AddToBasketViewModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Product Details";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
+<hr/>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="row">
+    <div class="col-md-2">
+        <img src="~/Content/box_placeholder.jpg" width="120" height="140" alt="Image"/>
+    </div>
+    <div class="col-md-4">
+        <h3>@Html.DisplayFor(model => model.Name)</h3>
+        <h4>@Html.DisplayFor(model => model.Price)</h4>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <h6><span class="stock">@Html.DisplayFor(model => model.Stock)</span> left in stock</h6>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Weight):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Weight)g
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.BoxItemsAmount):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BoxItemsAmount) / per Box
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
+        </dl>
+    </div>
+    <div class="col-md-4">
+@using (Html.BeginForm("Details", "Products", FormMethod.Post, new { role = "form" }))
+{
+    <h3>@Html.DisplayNameFor(m => m.Quantity)</h3>
+    
+    @Html.AntiForgeryToken()
+    
+    @Html.ValidationSummary("", new { @class = "text-danger" })
 
-        <dd>
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BoxItemsAmount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BoxItemsAmount)
-        </dd>
-
-    </dl>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.Quantity, new { @class = "col-md-2 col-sm-2 col-xs-12 form-control" })
+        <input type="submit" class="btn btn-success col-md-10 col-sm-3 col-xs-12" value="Add to Basket"/>
+    </div>
+}
+    </div>
 </div>
+
+<br />
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("All Products", "Index")
 </p>

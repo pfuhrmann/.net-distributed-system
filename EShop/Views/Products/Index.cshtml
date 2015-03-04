@@ -6,19 +6,20 @@
 
 <h2>Our Products</h2>
 
-
 <div class="row">
 @foreach (var item in Model)
 {
-    <div class="col-md-4">
-        <div class="col-md-4">
-            <img src="~/Content/box_placeholder.jpg" width="100" height="120" alt="Image"/>
-        </div>
-        <div class="col-md-8">
-            <a href="@Url.Action("Details", "Products", new { id = item.Id })">
-                <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-            </a>
-            <h4>&pound;@Html.DisplayFor(modelItem => item.Price)</h4>
+    <div class="col-md-4 col-sm-6">
+        <div class="row product">
+            <div class="col-sm-5">
+                <a href="@Url.Action("Details", "Products", new {id = item.Id})"><img src="~/Content/box_placeholder.jpg" width="120" height="140" alt="Image" /></a>
+            </div>
+            <div class="col-sm-7">
+                <a href="@Url.Action("Details", "Products", new {id = item.Id})">
+                    <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                </a>
+                <h4>@Html.DisplayFor(modelItem => item.Price)</h4>
+            </div>
         </div>
     </div>
 }
