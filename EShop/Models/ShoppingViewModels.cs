@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EShop.Models
 {
     public class AddToBasketViewModel
     {
+        private int _quantity = 1;
 
         public string Name { get; set; }
 
@@ -20,6 +20,11 @@ namespace EShop.Models
         public int Stock { get; set; }
 
         [Required]
-        public string Quantity { get; set; }
+        [Range(1, 20)]
+        public int Quantity
+        {
+            get { return _quantity; }
+            set { _quantity = value; }
+        }
     }
 }

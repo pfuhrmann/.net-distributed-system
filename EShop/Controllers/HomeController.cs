@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace EShop.Controllers
 {
@@ -22,7 +18,7 @@ namespace EShop.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Contact Us.";
+            ViewBag.Message = "Address.";
 
             return View();
         }
