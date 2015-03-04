@@ -174,8 +174,12 @@ namespace StockManagement
             // Validate value not empty
             if (String.IsNullOrEmpty(e.FormattedValue.ToString()))
             {
-                errorText = "Value cannot be empty";
-                e.Cancel = true;
+                var productId = Int32.Parse(productDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                if (productId != 0)
+                {
+                    errorText = "Value cannot be empty";
+                    e.Cancel = true;
+                }
             }
 
             // Validate the Weight entry
