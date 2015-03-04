@@ -3,16 +3,16 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DataModel
 {
-    public class DataModel : IdentityDbContext<Customer>
+    public class DbModel : IdentityDbContext<Customer>
     {
-        public DataModel() : base("name=DataModel")
+        public DbModel() : base("name=DbModel")
         {
             Database.SetInitializer(new DatabaseContextInitializer());
         }
 
-        public static DataModel Create()
+        public static DbModel Create()
         {
-            return new DataModel();
+            return new DbModel();
         }
 
         public virtual DbSet<OrderItem> OrderItems { get; set; }

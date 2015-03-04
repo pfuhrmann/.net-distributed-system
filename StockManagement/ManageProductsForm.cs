@@ -11,7 +11,7 @@ namespace StockManagement
 {
     public partial class ManageProductsForm : Form
     {
-        private DataModel.DataModel _context;
+        private DbModel _context;
 
         public ManageProductsForm()
         {
@@ -23,7 +23,7 @@ namespace StockManagement
             base.OnLoad(e);
 
             // Initialize DB context
-            _context = new DataModel.DataModel();
+            _context = DbModel.Create();
             _context.Products.Load();
             _context.Warehouses.Load();
 

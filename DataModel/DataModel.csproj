@@ -77,7 +77,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="DatabaseContextInitializer.cs" />
     <Compile Include="DatabasePopulationProvider.cs" />
-    <Compile Include="DataModel.cs" />
+    <Compile Include="DbModel.cs" />
     <Compile Include="ObservableListSource.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderItem.cs" />
