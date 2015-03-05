@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Routing;
 using DataModel;
 using EShop.Models;
 using Microsoft.AspNet.Identity;
@@ -74,7 +75,7 @@ namespace EShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                return RedirectToAction("AddToCart", new { controller = "ShoppingCart", id = id, quantity = model.Quantity });
             }
 
             if (id == null)

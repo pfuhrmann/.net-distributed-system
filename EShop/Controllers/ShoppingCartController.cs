@@ -5,6 +5,7 @@ using EShop.Models;
 
 namespace EShop.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         readonly DbModel _context = new DbModel();
@@ -32,6 +33,17 @@ namespace EShop.Controllers
             var cart = ShoppingCart.GetCart(User.Identity.Name);
             cart.AddToCart(product, quantity);
 
+            // View shopping cart
+            return RedirectToAction("Index");
+        }
+
+        // GET: /ShoppingCart/RemoveFromCart/5
+        public ActionResult RemoveFromCart(int id)
+        {
+            var cart = ShoppingCart.GetCart(User.Identity.Name);
+            cart.RemoveFromCart(id);
+
+            // View shopping cart
             return RedirectToAction("Index");
         }
     }

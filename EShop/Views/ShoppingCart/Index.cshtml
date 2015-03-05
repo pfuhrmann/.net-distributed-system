@@ -1,5 +1,59 @@
-﻿@{
+﻿@model EShop.Models.ShoppingCartViewModel
+@{
     ViewBag.Title = "Shopping Cart";
 }
 <h2>@ViewBag.Title</h2>
 
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model.CartItems.Count == 0)
+    {
+        <tr>
+            <th>Basket is empty. Add some items and come back.</th>
+            <th></th>
+            <th></th>
+        </tr>
+    }
+    else
+    {
+        foreach (var item in Model.CartItems)
+        {
+            <tr>
+                <td>
+                    <h3>@Html.DisplayFor(model => item.Product.Name)</h3>
+                    <h6><span class="stock">@Html.DisplayFor(model => item.Product.StockTotal)</span> left in stock</h6>
+                    [ @Html.ActionLink("Remove", "RemoveFromCart", "ShoppingCart", new {item.Product.Id}, new {@class = ""}) ]
+                </td>
+                <td style="padding-top: 26px;">
+                    <h4>@Html.DisplayFor(model => item.Product.Price)</h4>
+                </td>
+                <td style="padding-top: 26px;">@Html.TextBoxFor(model => item.Quantity, new {@class = "form-control"})</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-md-1 col-md-offset-7">
+        <input type="submit" class="btn btn-primary" value="Update">
+    </div>
+</div>
+
+<div class="row checkout">
+    <div class="col-md-2 col-md-offset-4">
+        <h4>
+            <strong>Total:</strong> @Html.DisplayFor(model => model.CartTotal)
+        </h4>
+    </div>
+    <div class="col-md-offset-2">
+        <a href="@Url.Action("RemoveFromCart", "ShoppingCart")" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Proceed to Checkout</a>
+    </div>
+</div>

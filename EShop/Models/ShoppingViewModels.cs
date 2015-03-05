@@ -43,6 +43,8 @@ namespace EShop.Models
     public class ShoppingCartViewModel
     {
         public List<CartItem> CartItems { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal CartTotal { get; set; }
     }
 }

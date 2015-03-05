@@ -6,7 +6,6 @@ namespace EShop.Models
 {
     public class ShoppingCart
     {
-        public const string CartSessionKey = "CartId";
         private readonly DbModel _context = new DbModel();
         private string ShoppingCartId { get; set; }
 
@@ -43,14 +42,12 @@ namespace EShop.Models
             _context.SaveChanges();
         }
 
-        public void RemoveFromCart(Product product)
+        public void RemoveFromCart(int id)
         {
             // Get the cart
             var cartItem = _context.CartItems.Single(
                 cart => cart.CartId == ShoppingCartId
-                        && cart.ProductId == product.Id);
-
-            var itemCount = 0;
+                        && cart.ProductId == id);
 
             if (cartItem != null)
             {
@@ -73,6 +70,16 @@ namespace EShop.Models
                               cartItems.Product.Price).Sum();
 
             return total ?? 0;
+        }
+
+        public int GetItems()
+        {
+            // Get the count of each item in the cart and sum them up
+            int? count = (from cartItems in _context.CartItems
+                          where cartItems.CartId == ShoppingCartId
+                          select (int?)cartItems.Quantity).Sum();
+            // Return 0 if all entries are null
+            return count ?? 0;
         }
     }
 }

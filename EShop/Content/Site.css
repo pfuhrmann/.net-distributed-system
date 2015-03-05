@@ -35,6 +35,11 @@
     dd {
         float: left;
     }
+
+    .checkout {
+         padding-bottom: 50px;
+         padding-top: 100px;
+    }
 }
 
 .stock {
@@ -47,6 +52,8 @@
     margin-top: -10px;
     margin-right: -3px;
 }
+
+
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
