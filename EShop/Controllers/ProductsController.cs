@@ -74,7 +74,7 @@ namespace EShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("AddToCart", new {controller = "ShoppingCart", id, quantity = model.Quantity});
+                return RedirectToAction("AddToBasket", new {controller = "Basket", id, quantity = model.Quantity});
             }
 
             if (id == null)

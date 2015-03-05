@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using DataModel;
 
@@ -22,7 +23,7 @@ namespace EShop.Models
         public int Stock { get; set; }
 
         [Required]
-        [Range(1, 20)]
+        [Range(1, Int32.MaxValue, ErrorMessage = "Mimimum quantity is 1")]
         [StockLevelValidation("ProductId", false)]
         public int Quantity
         {
@@ -43,11 +44,11 @@ namespace EShop.Models
         public string Name { get; set; }
     }
 
-    public class ShoppingCartViewModel
+    public class BasketViewModel
     {
-        public List<CartItem> CartItems { get; set; }
+        public List<BasketItem> BasketItems { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
-        public decimal CartTotal { get; set; }
+        public decimal BasketTotal { get; set; }
     }
 }

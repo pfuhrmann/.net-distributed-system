@@ -53,7 +53,13 @@
     margin-right: -3px;
 }
 
+table a:not(.btn), .table a:not(.btn) {
+    text-decoration: none;
+}
 
+table a:not(.btn):hover, .table a:not(.btn):hover {
+    text-decoration: underline;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,

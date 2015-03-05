@@ -49,7 +49,6 @@ namespace DataModel
             if (product.StockTotal < (int) value)
             {
                 errorMessage += product.StockTotal + " items left in stock";
-
                 return new ValidationResult(errorMessage);
             }
 

@@ -1,0 +1,72 @@
+﻿@model EShop.Models.BasketViewModel
+@{
+    ViewBag.Title = "Your Basket";
+}
+<h2>@ViewBag.Title</h2>
+
+@if (Model.BasketItems.Count != 0)
+{
+    using (Html.BeginForm("Index", "Basket", FormMethod.Post, new {role = "form"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new {@class = "text-danger"})
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            @for (var i = 0; i < Model.BasketItems.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details", "Products", new {id = Model.BasketItems[i].Product.Id})">
+                            <h3>@Html.DisplayFor(model => Model.BasketItems[i].Product.Name)</h3>
+                        </a>
+                        <h6>
+                            <span class="stock">@Html.DisplayFor(model => Model.BasketItems[i].Product.StockTotal)</span> left in stock
+                        </h6>
+                        [ @Html.ActionLink("Remove", "RemoveFromBasket", "Basket", new {Model.BasketItems[i].Product.Id}, new {@class = ""}) ]
+                    </td>
+                    <td style="padding-top: 26px;">
+                        <h4>@Html.DisplayFor(model => Model.BasketItems[i].Product.Price)</h4>
+                    </td>
+                    <td style="padding-top: 26px;">
+                        @Html.TextBoxFor(model => Model.BasketItems[i].Quantity, new {@class = "form-control"})
+                        @Html.HiddenFor(model => Model.BasketItems[i].ProductId)
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-sm-offset-7 col-xs-12">
+                <input type="submit" class="btn btn-primary" value="Update">
+            </div>
+        </div>
+
+        <div class="row checkout">
+            <div class="col-sm-3 col-md-2 col-sm-offset-4 col-xs-12">
+                <h4>
+                    <strong>Total:</strong> @Html.DisplayFor(model => model.BasketTotal)
+                </h4>
+            </div>
+            <div class="col-xs-1">
+                <a href="@Url.Action("RemoveFromBasket", "Basket")" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 12px;"></span>Proceed to Checkout
+                </a>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <hr/>
+
+    <h4>Basket is empty. Add some items and come back later.</h4>
+}

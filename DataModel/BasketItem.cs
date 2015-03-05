@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DataModel
 {
-    public class CartItem
+    public class BasketItem
     {
         public int Id { get; set; }
 
@@ -11,7 +10,7 @@ namespace DataModel
         [StockLevelValidation("ProductId")]
         public int Quantity { get; set; }
 
-        public string CartId { get; set; }
+        public string BasketId { get; set; }
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
     }

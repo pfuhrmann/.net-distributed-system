@@ -43,6 +43,7 @@
 
             <div class="form-group">
                 @Html.TextBoxFor(m => m.Quantity, new {@class = "col-md-2 col-sm-2 col-xs-12 form-control"})
+                @Html.HiddenFor(m => m.ProductId)
                 <input type="submit" class="btn btn-success col-md-10 col-sm-3 col-xs-12" value="Add to Basket"/>
             </div>
 
