@@ -8,12 +8,11 @@ namespace EShop.Controllers
     [Authorize]
     public class ShoppingCartController : Controller
     {
-        readonly DbModel _context = new DbModel();
-
+        private readonly DbModel _context = new DbModel();
         // GET: /ShoppingCart/
         public ActionResult Index()
         {
-            var cart = ShoppingCart.GetCart(User.Identity.Name);
+            var cart = GetCart();
 
             var model = new ShoppingCartViewModel
             {
@@ -24,27 +23,50 @@ namespace EShop.Controllers
             return View(model);
         }
 
+        // POST: /ShoppingCart/
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(ShoppingCartViewModel model)
+        {
+            var cart = GetCart();
+
+            if (ModelState.IsValid)
+            {
+                cart.Update(model.CartItems);
+            }
+
+            model.CartItems = cart.GetCartItems();
+            model.CartTotal = cart.GetTotal();
+
+            return View(model);
+        }
+
         // GET: /ShoppingCart/AddToCart/5/10
         public ActionResult AddToCart(int id, int quantity)
         {
             var product = _context.Products
                 .Single(p => p.Id == id);
 
-            var cart = ShoppingCart.GetCart(User.Identity.Name);
+            var cart = GetCart();
             cart.AddToCart(product, quantity);
 
-            // View shopping cart
+            // Redirect tp shopping cart
             return RedirectToAction("Index");
         }
 
         // GET: /ShoppingCart/RemoveFromCart/5
         public ActionResult RemoveFromCart(int id)
         {
-            var cart = ShoppingCart.GetCart(User.Identity.Name);
+            var cart = GetCart();
             cart.RemoveFromCart(id);
 
-            // View shopping cart
+            // Redirect tp shopping cart
             return RedirectToAction("Index");
+        }
+
+        private ShoppingCart GetCart()
+        {
+            return ShoppingCart.GetCart(User.Identity.Name);
         }
     }
 }

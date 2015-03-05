@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataModel
 {
@@ -13,11 +13,5 @@ namespace DataModel
         public string CartId { get; set; }
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
-
-        [NotMapped]
-        public int ItemPrice
-        {
-            get { return (Product.Price*Quantity); }
-        }
     }
 }

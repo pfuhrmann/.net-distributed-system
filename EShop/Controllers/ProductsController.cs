@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Web.Routing;
 using DataModel;
 using EShop.Models;
 using Microsoft.AspNet.Identity;
@@ -13,11 +12,10 @@ namespace EShop.Controllers
     public class ProductsController : Controller
     {
         private readonly DbModel db = new DbModel();
-
         // GET: Products
         public ActionResult Index()
         {
-            var model = new ProductListViewModel()
+            var model = new ProductListViewModel
             {
                 Products = db.Products.ToList()
             };
@@ -75,7 +73,7 @@ namespace EShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("AddToCart", new { controller = "ShoppingCart", id = id, quantity = model.Quantity });
+                return RedirectToAction("AddToCart", new {controller = "ShoppingCart", id, quantity = model.Quantity});
             }
 
             if (id == null)

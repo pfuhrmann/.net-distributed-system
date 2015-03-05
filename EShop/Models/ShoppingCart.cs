@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using DataModel;
 
@@ -18,6 +20,8 @@ namespace EShop.Models
 
         public void AddToCart(Product product, int quantity)
         {
+            // Check if cart item already exists
+            // with given product ID
             var cartItem = _context.CartItems.SingleOrDefault(
                 c => c.CartId == ShoppingCartId
                      && c.ProductId == product.Id);
@@ -54,6 +58,44 @@ namespace EShop.Models
                 _context.CartItems.Remove(cartItem);
                 _context.SaveChanges();
             }
+        }
+
+        public void Update(List<CartItem> cartItems)
+        {
+            // Loop through basket items and update each
+            foreach (var item in cartItems)
+            {
+                var cartItem = _context.CartItems.SingleOrDefault(
+                c => c.CartId == ShoppingCartId
+                     && c.ProductId == item.ProductId);
+
+                if (cartItem == null)
+                {
+                    // Create a new cart item if no cart item exists
+                    cartItem = new CartItem
+                    {
+                        ProductId = item.ProductId,
+                        CartId = ShoppingCartId,
+                        Quantity = item.Quantity
+                    };
+                    _context.CartItems.Add(cartItem);
+                }
+                else
+                {
+                    // Item already exists
+                    if (item.Quantity > 0)
+                    {
+                        cartItem.Quantity = item.Quantity;
+                    }
+                    else
+                    {
+                        _context.CartItems.Remove(cartItem);
+                    }
+                    
+                }
+            }
+
+            _context.SaveChanges();
         }
 
         public List<CartItem> GetCartItems()

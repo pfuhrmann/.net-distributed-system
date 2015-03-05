@@ -19,9 +19,15 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">@User.Identity.GetUserName() <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li>@Html.ActionLink("Settings", "Index", "Manage", routeValues: null, htmlAttributes: new {title = "Manage"})</li>
+                    <li>
+                        <a href="@Url.Action("Index", "Manage")"><span class="glyphicon glyphicon-tasks" aria-hidden="true" style="padding-right: 12px;"></span>Settings</a>
+                    </li>
                     <li class="divider"></li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Log off</a></li>
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true" style="padding-right: 12px;"></span> Log off
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

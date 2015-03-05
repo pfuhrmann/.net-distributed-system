@@ -4,56 +4,69 @@
 }
 <h2>@ViewBag.Title</h2>
 
-<table class="table table-striped table-hover">
-    <thead>
-    <tr>
-        <th></th>
-        <th>Price</th>
-        <th>Quantity</th>
-    </tr>
-    </thead>
-    <tbody>
-    @if (Model.CartItems.Count == 0)
-    {
+@using (Html.BeginForm("Index", "ShoppingCart", FormMethod.Post, new {role = "form"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    
+    <table class="table table-striped table-hover">
+        <thead>
         <tr>
-            <th>Basket is empty. Add some items and come back.</th>
             <th></th>
-            <th></th>
+            <th>Price</th>
+            <th>Quantity</th>
         </tr>
-    }
-    else
-    {
-        foreach (var item in Model.CartItems)
+        </thead>
+        <tbody>
+        @if (Model.CartItems.Count == 0)
         {
             <tr>
-                <td>
-                    <h3>@Html.DisplayFor(model => item.Product.Name)</h3>
-                    <h6><span class="stock">@Html.DisplayFor(model => item.Product.StockTotal)</span> left in stock</h6>
-                    [ @Html.ActionLink("Remove", "RemoveFromCart", "ShoppingCart", new {item.Product.Id}, new {@class = ""}) ]
-                </td>
-                <td style="padding-top: 26px;">
-                    <h4>@Html.DisplayFor(model => item.Product.Price)</h4>
-                </td>
-                <td style="padding-top: 26px;">@Html.TextBoxFor(model => item.Quantity, new {@class = "form-control"})</td>
+                <th>Basket is empty. Add some items and come back.</th>
+                <th></th>
+                <th></th>
             </tr>
         }
-    }
-    </tbody>
-</table>
+        else
+        {
+                for (int i = 0; i < Model.CartItems.Count(); i++)
+                {
+                <tr>
+                    <td>
+                        <h3>@Html.DisplayFor(model => Model.CartItems[i].Product.Name)</h3>
+                        <h6>
+                            <span class="stock">@Html.DisplayFor(model => Model.CartItems[i].Product.StockTotal)</span> left in stock
+                        </h6>
+                        [ @Html.ActionLink("Remove", "RemoveFromCart", "ShoppingCart", new { Model.CartItems[i].Product.Id }, new { @class = "" }) ]
+                    </td>
+                    <td style="padding-top: 26px;">
+                        <h4>@Html.DisplayFor(model => Model.CartItems[i].Product.Price)</h4>
+                    </td>
+                    <td style="padding-top: 26px;">
+                        @Html.TextBoxFor(model => Model.CartItems[i].Quantity, new {@class = "form-control"})
+                        @Html.HiddenFor(model => Model.CartItems[i].ProductId)
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
 
-<div class="row">
-    <div class="col-md-1 col-md-offset-7">
-        <input type="submit" class="btn btn-primary" value="Update">
+    <div class="row">
+        <div class="col-sm-offset-7 col-xs-12">
+            <input type="submit" class="btn btn-primary" value="Update">
+        </div>
     </div>
-</div>
+}
 
 <div class="row checkout">
-    <div class="col-md-2 col-md-offset-4">
+    <div class="col-sm-3 col-md-2 col-sm-offset-4 col-xs-12">
         <h4>
             <strong>Total:</strong> @Html.DisplayFor(model => model.CartTotal)
         </h4>
     </div>
-    <div class="col-md-offset-2">
-        <a href="@Url.Action("RemoveFromCart", "ShoppingCart")" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Proceed to Checkout</a>
+    <div class="col-xs-1">
+        <a href="@Url.Action("RemoveFromCart", "ShoppingCart")" class="btn btn-success">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 12px;"></span>Proceed to Checkout
+        </a>
     </div>
 </div>
