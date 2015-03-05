@@ -9,6 +9,8 @@ namespace EShop.Models
         private int _quantity = 1;
         public string Name { get; set; }
 
+        public int ProductId { get; set; }
+
         [DisplayFormat(DataFormatString = "{0:C}")]
         public short Price { get; set; }
 
@@ -21,6 +23,7 @@ namespace EShop.Models
 
         [Required]
         [Range(1, 20)]
+        [StockLevelValidation("ProductId", false)]
         public int Quantity
         {
             get { return _quantity; }

@@ -9,6 +9,7 @@ namespace EShop.Controllers
     public class ShoppingCartController : Controller
     {
         private readonly DbModel _context = new DbModel();
+
         // GET: /ShoppingCart/
         public ActionResult Index()
         {
@@ -17,7 +18,7 @@ namespace EShop.Controllers
             var model = new ShoppingCartViewModel
             {
                 CartItems = cart.GetCartItems(),
-                CartTotal = cart.GetTotal()
+                CartTotal = cart.GetTotalPrice()
             };
 
             return View(model);
@@ -36,7 +37,7 @@ namespace EShop.Controllers
             }
 
             model.CartItems = cart.GetCartItems();
-            model.CartTotal = cart.GetTotal();
+            model.CartTotal = cart.GetTotalPrice();
 
             return View(model);
         }

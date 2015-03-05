@@ -4,20 +4,20 @@ using System.Net;
 using System.Web.Mvc;
 using DataModel;
 using EShop.Models;
-using Microsoft.AspNet.Identity;
 
 namespace EShop.Controllers
 {
     [Authorize]
     public class ProductsController : Controller
     {
-        private readonly DbModel db = new DbModel();
+        private readonly DbModel _context = new DbModel();
+
         // GET: Products
         public ActionResult Index()
         {
             var model = new ProductListViewModel
             {
-                Products = db.Products.ToList()
+                Products = _context.Products.ToList()
             };
 
             return View(model);
@@ -31,12 +31,12 @@ namespace EShop.Controllers
             if (ModelState.IsValid && !String.IsNullOrEmpty(model.Name))
             {
                 model.Products =
-                    db.Products.Where(p => p.Name.Contains(model.Name));
+                    _context.Products.Where(p => p.Name.Contains(model.Name));
 
                 return View(model);
             }
 
-            model.Products = db.Products.ToList();
+            model.Products = _context.Products.ToList();
             return View(model);
         }
 
@@ -48,7 +48,7 @@ namespace EShop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var product = db.Products.Find(id);
+            var product = _context.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -56,6 +56,7 @@ namespace EShop.Controllers
 
             var model = new ProductDetailViewModel
             {
+                ProductId = product.Id,
                 Name = product.Name,
                 Price = product.Price,
                 Weight = product.Weight,
@@ -81,12 +82,13 @@ namespace EShop.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var product = db.Products.Find(id);
+            var product = _context.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
             }
 
+            model.ProductId = product.Id;
             model.Name = product.Name;
             model.Price = product.Price;
             model.Weight = product.Weight;
@@ -94,14 +96,6 @@ namespace EShop.Controllers
             model.Stock = product.StockTotal;
 
             return View(model);
-        }
-
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
-            }
         }
     }
 }

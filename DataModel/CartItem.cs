@@ -8,6 +8,7 @@ namespace DataModel
         public int Id { get; set; }
 
         [Required]
+        [StockLevelValidation("ProductId")]
         public int Quantity { get; set; }
 
         public string CartId { get; set; }

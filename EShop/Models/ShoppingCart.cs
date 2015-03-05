@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Validation;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DataModel;
 
@@ -22,9 +20,7 @@ namespace EShop.Models
         {
             // Check if cart item already exists
             // with given product ID
-            var cartItem = _context.CartItems.SingleOrDefault(
-                c => c.CartId == ShoppingCartId
-                     && c.ProductId == product.Id);
+            var cartItem = GetCartItem(product.Id);
 
             if (cartItem == null)
             {
@@ -49,10 +45,7 @@ namespace EShop.Models
         public void RemoveFromCart(int id)
         {
             // Get the cart
-            var cartItem = _context.CartItems.Single(
-                cart => cart.CartId == ShoppingCartId
-                        && cart.ProductId == id);
-
+            var cartItem = GetCartItem(id);
             if (cartItem != null)
             {
                 _context.CartItems.Remove(cartItem);
@@ -65,10 +58,7 @@ namespace EShop.Models
             // Loop through basket items and update each
             foreach (var item in cartItems)
             {
-                var cartItem = _context.CartItems.SingleOrDefault(
-                c => c.CartId == ShoppingCartId
-                     && c.ProductId == item.ProductId);
-
+                var cartItem = GetCartItem(item.ProductId);
                 if (cartItem == null)
                 {
                     // Create a new cart item if no cart item exists
@@ -91,37 +81,44 @@ namespace EShop.Models
                     {
                         _context.CartItems.Remove(cartItem);
                     }
-                    
                 }
             }
 
             _context.SaveChanges();
         }
 
-        public List<CartItem> GetCartItems()
+        public int GetTotalPrice()
         {
-            return _context.CartItems.Where(
-                cart => cart.CartId == ShoppingCartId).ToList();
-        }
-
-        public int GetTotal()
-        {
-            int? total = (from cartItems in _context.CartItems
-                              where cartItems.CartId == ShoppingCartId
-                              select (int?)cartItems.Quantity *
-                              cartItems.Product.Price).Sum();
+            // Get price of each item in the basket and sum them up
+            var total = (from cartItems in _context.CartItems
+                where cartItems.CartId == ShoppingCartId
+                select (int?) cartItems.Quantity*
+                       cartItems.Product.Price).Sum();
 
             return total ?? 0;
         }
 
         public int GetItems()
         {
-            // Get the count of each item in the cart and sum them up
-            int? count = (from cartItems in _context.CartItems
-                          where cartItems.CartId == ShoppingCartId
-                          select (int?)cartItems.Quantity).Sum();
-            // Return 0 if all entries are null
+            // Get the count of each item in the basket and sum them up
+            var count = (from cartItems in _context.CartItems
+                where cartItems.CartId == ShoppingCartId
+                select (int?) cartItems.Quantity).Sum();
+
             return count ?? 0;
+        }
+
+        public CartItem GetCartItem(int productId)
+        {
+            return _context.CartItems.SingleOrDefault(
+                c => c.CartId == ShoppingCartId
+                     && c.ProductId == productId);
+        }
+
+        public List<CartItem> GetCartItems()
+        {
+            return _context.CartItems.Where(
+                cart => cart.CartId == ShoppingCartId).ToList();
         }
     }
 }
