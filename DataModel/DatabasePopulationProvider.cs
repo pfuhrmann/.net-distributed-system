@@ -7,6 +7,30 @@ namespace DataModel
     {
         private static readonly Random R = new Random();
 
+        public static List<Customer> GetCustomers()
+        {
+            var customers = new List<Customer>
+            {
+                new Customer
+                {
+                    FirstName = "Patrik",
+                    LastName = "Fuhrmann",
+                    Email = "fuhrmann.patrik@gmail.com",
+                    Gender = false,
+                    PhoneNumber = "+07426255540",
+                    DOB = new DateTime(1990, 6, 18),
+                    PasswordHash = "AL9/jmkGTa6QXsOisbWorQWqiNvFOxu7zbNhyY3lUJ+iXcxz5QMu+5Wt/5hJ3GXkUQ==",
+                    AddressLine1 = "14 Eleonora Terrace",
+                    AddressLine2 = "Lind Road",
+                    Town = "Sutton",
+                    Postcode = "SM1 4PU",
+
+                }
+            };
+
+            return customers;
+        }
+
         public static List<Product> GetProducts()
         {
             var products = new List<Product>();

@@ -8,6 +8,7 @@ namespace DataModel
         {
             base.Seed(context);
 
+            //DatabasePopulationProvider.GetCustomers().ForEach(c => context.Users.Add(c));
             DatabasePopulationProvider.GetProducts().ForEach(p => context.Products.Add(p));
             DatabasePopulationProvider.GetWarehouses().ForEach(w => context.Warehouses.Add(w));
             context.SaveChanges();
