@@ -9,8 +9,8 @@ namespace DataModel
         [Required]
         public int Quantity { get; set; }
 
-        public int Product_Id { get; set; }
-        public int Warehouse_Id { get; set; }
+        public int ProductId { get; set; }
+        public int WarehouseId { get; set; }
         public virtual Product Product { get; set; }
         public virtual Warehouse Warehouse { get; set; }
     }

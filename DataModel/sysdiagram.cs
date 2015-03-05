@@ -1,12 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace DataModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    public partial class sysdiagram
+    public class sysdiagram
     {
         [Required]
         [StringLength(128)]
@@ -18,7 +14,6 @@ namespace DataModel
         public int diagram_id { get; set; }
 
         public int? version { get; set; }
-
         public byte[] definition { get; set; }
     }
 }

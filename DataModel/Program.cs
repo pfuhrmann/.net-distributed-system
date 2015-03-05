@@ -1,12 +1,9 @@
-﻿using System.Data.Entity;
-
-namespace DataModel
+﻿namespace DataModel
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            Database.SetInitializer(new DatabaseContextInitializer());
         }
     }
 }

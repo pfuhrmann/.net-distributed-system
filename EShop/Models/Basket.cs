@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using DataModel;
+using Microsoft.AspNet.Identity;
 
 namespace EShop.Models
 {
@@ -80,6 +83,53 @@ namespace EShop.Models
                         _context.BasketItems.Remove(basketItem);
                     }
                 }
+            }
+
+            _context.SaveChanges();
+        }
+
+        public int CreateOrder()
+        {
+            var order = new Order
+            {
+                CustomerId = HttpContext.Current.User.Identity.GetUserId(),
+                Date = DateTime.Now,
+                Status = "Prepared",
+                OrderTotal = GetTotalPrice()
+            };
+            // Save changes to get primary order ID key
+            _context.SaveChanges();
+
+            // Iterate over the items in the basket, 
+            // adding the order details for each
+            var basketItems = GetBasketItems();
+            foreach (var item in basketItems)
+            {
+                var orderItem = new OrderItem()
+                {
+                    OrderId = order.Id,
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity,
+                    Status = "New",
+                    UnitPrice = item.Product.Price
+                };
+                _context.OrderItems.Add(orderItem);
+            }
+            _context.SaveChanges();
+
+            // Empty the basket
+            EmptyBasket();
+
+            return order.Id;
+        }
+
+        public void EmptyBasket()
+        {
+            // Delete all the basket items permanently
+            var basketItems = GetBasketItems();
+            foreach (var basketItem in basketItems)
+            {
+                _context.BasketItems.Remove(basketItem);
             }
 
             _context.SaveChanges();

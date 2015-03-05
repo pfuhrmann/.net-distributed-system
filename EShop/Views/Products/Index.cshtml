@@ -7,15 +7,15 @@
 @using (Html.BeginForm("Index", "Products", FormMethod.Post, new {role = "form"}))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary("", new {@class = "text-danger"})
-
+    @Html.Partial("_ValidationSummary")
+    
     <div class="row">
         <div class="col-md-4 col-sm-5 col-xs-10">
             <div class="input-group">
                 @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Product name..."})
                 <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </span>
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </span>
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
     </div>

@@ -73,6 +73,10 @@ textarea {
     padding-bottom: 20px;
 }
 
-    .product:hover {
-        background-color: #f5f5f5;
-    }
+.product:hover {
+    background-color: #f5f5f5;
+}
+
+ul, ol {
+    margin-bottom: 0;
+}

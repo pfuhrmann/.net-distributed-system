@@ -1,12 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace DataModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    public partial class Warehouse
+    public class Warehouse
     {
         public Warehouse()
         {
@@ -21,9 +17,7 @@ namespace DataModel
         public string Name { get; set; }
 
         public virtual ObservableListSource<Stock> Stocks { get; set; }
-
         public virtual ObservableListSource<StocksTransfer> StocksTransfers { get; set; }
-
         public virtual ObservableListSource<StocksTransfer> StocksTransfers1 { get; set; }
     }
 }

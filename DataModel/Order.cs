@@ -1,12 +1,9 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace DataModel
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    public partial class Order
+    public class Order
     {
         public Order()
         {
@@ -16,15 +13,16 @@ namespace DataModel
         public int Id { get; set; }
 
         [Required]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
         public string Status { get; set; }
 
-        public string Customer_Id { get; set; }
+        [Required]
+        public int OrderTotal { get; set; }
 
+        public string CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
-
         public virtual ObservableListSource<OrderItem> OrderItems { get; set; }
     }
 }

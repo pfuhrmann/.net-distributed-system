@@ -159,7 +159,7 @@ namespace EShop.Controllers
                     LastName = model.LastName,
                     Email = model.Email,
                     PhoneNumber = model.Phone,
-                    DOB = model.DOB,
+                    Dob = model.DOB,
                     AddressLine1 = model.AddressLine1,
                     AddressLine2 = model.AddressLine2,
                     Town = model.Town,

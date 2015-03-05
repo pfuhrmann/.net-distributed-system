@@ -9,7 +9,7 @@
     using (Html.BeginForm("Index", "Basket", FormMethod.Post, new {role = "form"}))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary("", new {@class = "text-danger"})
+        @Html.Partial("_ValidationSummary")
 
         <table class="table table-striped table-hover">
             <thead>

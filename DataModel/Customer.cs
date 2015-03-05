@@ -21,7 +21,8 @@ namespace DataModel
         public string LastName { get; set; }
 
         public bool Gender { get; set; }
-        public DateTime DOB { get; set; }
+
+        public DateTime Dob { get; set; }
 
         [Required]
         public string AddressLine1 { get; set; }

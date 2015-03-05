@@ -43,7 +43,7 @@ namespace StockManagement
 
             // Modify Warehouse column in Stocks grid
             var warehouseColumn = DataGridViewComboBoxColumn;
-            warehouseColumn.DataPropertyName = "Warehouse_Id";
+            warehouseColumn.DataPropertyName = "WarehouseId";
             warehouseColumn.DisplayMember = "Name";
             warehouseColumn.ValueMember = "Id";
             InitializeWarehouseDataSource();

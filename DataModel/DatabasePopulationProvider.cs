@@ -18,7 +18,7 @@ namespace DataModel
                     Email = "fuhrmann.patrik@gmail.com",
                     Gender = false,
                     PhoneNumber = "+07426255540",
-                    DOB = new DateTime(1990, 6, 18),
+                    Dob = new DateTime(1990, 6, 18),
                     PasswordHash = "AL9/jmkGTa6QXsOisbWorQWqiNvFOxu7zbNhyY3lUJ+iXcxz5QMu+5Wt/5hJ3GXkUQ==",
                     AddressLine1 = "14 Eleonora Terrace",
                     AddressLine2 = "Lind Road",
@@ -76,8 +76,8 @@ namespace DataModel
             {
                 stocks.Add(new Stock
                 {
-                    Product_Id = R.Next(1, 20),
-                    Warehouse_Id = R.Next(1, 10),
+                    ProductId = R.Next(1, 20),
+                    WarehouseId = R.Next(1, 10),
                     Quantity = R.Next(1, 50)
                 });
             }

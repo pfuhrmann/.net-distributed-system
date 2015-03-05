@@ -11,14 +11,14 @@ namespace EShop.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Buy The Box.";
+            ViewBag.Message = "Buy The Box Ltd.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Address.";
+            ViewBag.Message = "Get In Touch.";
 
             return View();
         }
