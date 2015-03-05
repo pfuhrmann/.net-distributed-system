@@ -1,12 +1,12 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using DataModel;
 
 namespace EShop.Models
 {
-    public class AddToBasketViewModel
+    public class ProductDetailViewModel
     {
         private int _quantity = 1;
-
         public string Name { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
@@ -26,5 +26,17 @@ namespace EShop.Models
             get { return _quantity; }
             set { _quantity = value; }
         }
+    }
+
+    public class ProductListViewModel
+    {
+        public ProductListViewModel()
+        {
+            Products = new List<Product>();
+        }
+
+        public virtual IEnumerable<Product> Products { get; set; }
+
+        public string Name { get; set; }
     }
 }

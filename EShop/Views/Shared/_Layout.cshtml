@@ -16,11 +16,15 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-brand" rel="home" href="@Url.Action("Index", "Home")" title="Buy Sell Rent Everyting">
+                    <img class="logo" src="~/Content/box_flat_logo.png" width="50">
+                </a>
                 @Html.ActionLink("Buy The Box", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">

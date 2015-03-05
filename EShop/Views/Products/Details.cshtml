@@ -1,14 +1,13 @@
-﻿@model EShop.Models.AddToBasketViewModel
+﻿@model EShop.Models.ProductDetailViewModel
 @{
     ViewBag.Title = "Product Details";
 }
-
 <h2>@ViewBag.Title</h2>
 <hr/>
 
 <div class="row">
-    <div class="col-md-2">
-        <img src="~/Content/box_placeholder.jpg" width="120" height="140" alt="Image"/>
+    <div class="col-md-3">
+        <img src="~/Content/box_placeholder.png" width="240" height="300" alt="Image"/>
     </div>
     <div class="col-md-4">
         <h3>@Html.DisplayFor(model => model.Name)</h3>
@@ -30,27 +29,28 @@
             <dd>
                 @Html.DisplayFor(model => model.BoxItemsAmount) / per Box
             </dd>
-
         </dl>
     </div>
-    <div class="col-md-4">
-@using (Html.BeginForm("Details", "Products", FormMethod.Post, new { role = "form" }))
-{
-    <h3>@Html.DisplayNameFor(m => m.Quantity)</h3>
-    
-    @Html.AntiForgeryToken()
-    
-    @Html.ValidationSummary("", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.TextBoxFor(m => m.Quantity, new { @class = "col-md-2 col-sm-2 col-xs-12 form-control" })
-        <input type="submit" class="btn btn-success col-md-10 col-sm-3 col-xs-12" value="Add to Basket"/>
-    </div>
-}
-    </div>
+    @using (Html.BeginForm("Details", "Products", FormMethod.Post, new {role = "form"}))
+    {
+        <div class="col-md-4">
+
+            <h3>@Html.DisplayNameFor(m => m.Quantity)</h3>
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary("", new {@class = "text-danger"})
+
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Quantity, new {@class = "col-md-2 col-sm-2 col-xs-12 form-control"})
+                <input type="submit" class="btn btn-success col-md-10 col-sm-3 col-xs-12" value="Add to Basket"/>
+            </div>
+
+        </div>
+    }
 </div>
 
-<br />
+<br/>
 
 <p>
     @Html.ActionLink("All Products", "Index")

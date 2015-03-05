@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using DataModel;
@@ -7,19 +8,40 @@ using Microsoft.AspNet.Identity;
 
 namespace EShop.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly DbModel db = new DbModel();
 
         // GET: Products
-        [Authorize]
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var model = new ProductListViewModel()
+            {
+                Products = db.Products.ToList()
+            };
+
+            return View(model);
+        }
+
+        // POST: Products
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(ProductListViewModel model)
+        {
+            if (ModelState.IsValid && !String.IsNullOrEmpty(model.Name))
+            {
+                model.Products =
+                    db.Products.Where(p => p.Name.Contains(model.Name));
+
+                return View(model);
+            }
+
+            model.Products = db.Products.ToList();
+            return View(model);
         }
 
         // GET: Products/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,7 +55,7 @@ namespace EShop.Controllers
                 return HttpNotFound();
             }
 
-            var model = new AddToBasketViewModel
+            var model = new ProductDetailViewModel
             {
                 Name = product.Name,
                 Price = product.Price,
@@ -48,7 +70,7 @@ namespace EShop.Controllers
         // POST: Products/Details/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Details(AddToBasketViewModel model, int? id)
+        public ActionResult Details(ProductDetailViewModel model, int? id)
         {
             if (ModelState.IsValid)
             {

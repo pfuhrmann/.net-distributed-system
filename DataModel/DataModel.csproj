@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartItem.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DatabaseContextInitializer.cs" />
     <Compile Include="DatabasePopulationProvider.cs" />

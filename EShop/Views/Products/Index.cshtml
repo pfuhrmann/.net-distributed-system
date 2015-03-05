@@ -1,26 +1,45 @@
-﻿@model IEnumerable<DataModel.Product>
-
+﻿@model EShop.Models.ProductListViewModel
 @{
-    ViewBag.Title = "Products";
+    ViewBag.Title = "Our Products";
 }
+<h2>@ViewBag.Title</h2>
 
-<h2>Our Products</h2>
+@using (Html.BeginForm("Index", "Products", FormMethod.Post, new {role = "form"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new {@class = "text-danger"})
+
+    <div class="row">
+        <div class="col-md-4 col-sm-5 col-xs-10">
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Product name..."})
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div>
+    <!-- /.row -->
+}
+<hr/>
 
 <div class="row">
-@foreach (var item in Model)
-{
-    <div class="col-md-4 col-sm-6">
-        <div class="row product">
-            <div class="col-sm-5">
-                <a href="@Url.Action("Details", "Products", new {id = item.Id})"><img src="~/Content/box_placeholder.jpg" width="120" height="140" alt="Image" /></a>
-            </div>
-            <div class="col-sm-7">
-                <a href="@Url.Action("Details", "Products", new {id = item.Id})">
-                    <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
-                </a>
-                <h4>@Html.DisplayFor(modelItem => item.Price)</h4>
+    @foreach (var item in Model.Products)
+    {
+        <div class="col-md-4 col-sm-6">
+            <div class="row product">
+                <div class="col-sm-5">
+                    <a href="@Url.Action("Details", "Products", new {id = item.Id})">
+                        <img src="~/Content/box_placeholder.png" width="120" height="140" alt="Image"/>
+                    </a>
+                </div>
+                <div class="col-sm-7">
+                    <a href="@Url.Action("Details", "Products", new {id = item.Id})">
+                        <h3>@Html.DisplayFor(modelItem => item.Name)</h3>
+                    </a>
+                    <h4>@Html.DisplayFor(modelItem => item.Price)</h4>
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
 </div>
