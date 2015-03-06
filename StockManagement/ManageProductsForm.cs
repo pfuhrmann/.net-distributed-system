@@ -235,6 +235,8 @@ namespace StockManagement
                 }
                 stocksDataGridView.Rows[e.RowIndex].ErrorText = "";
             }
+
+            productDataGridView.Refresh();
         }
 
         protected override void OnClosing(CancelEventArgs e)

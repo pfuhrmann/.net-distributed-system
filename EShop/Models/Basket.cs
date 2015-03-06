@@ -172,5 +172,10 @@ namespace EShop.Models
             return _context.BasketItems.Where(
                 bi => bi.BasketId == BasketId).ToList();
         }
+
+        public bool IsEmpty()
+        {
+            return !GetBasketItems().Any();
+        }
     }
 }

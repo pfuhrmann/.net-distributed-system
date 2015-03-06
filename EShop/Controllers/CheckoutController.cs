@@ -16,6 +16,12 @@ namespace EShop.Controllers
         {
             // Prepare required data
             var basket = Basket.GetBasket(User.Identity.Name);
+            // Customer should not be here if there is nothing in the basket
+            if (basket.IsEmpty())
+            {
+                return RedirectToAction("Index", "Basket");
+            }
+
             var model = new CheckoutViewModel
             {
                 Customer = GetCustomer(),
