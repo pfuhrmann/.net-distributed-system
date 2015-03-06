@@ -58,6 +58,7 @@ namespace EShop.Models
         public int WarehouseId { get; set; }
 
         public IEnumerable<SelectListItem> Warehouses { get; set; }
+        public IEnumerable<BasketItem> OrderItems { get; set; }
     }
 
     /*public class OrderListViewModel

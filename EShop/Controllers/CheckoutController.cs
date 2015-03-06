@@ -26,7 +26,8 @@ namespace EShop.Controllers
             {
                 Customer = GetCustomer(),
                 Warehouses = WarehouseItemsSelectList(),
-                OrderTotal = basket.GetTotalPrice()
+                OrderTotal = basket.GetTotalPrice(),
+                OrderItems = basket.GetBasketItems(),
             };
 
             return View(model);
@@ -41,12 +42,15 @@ namespace EShop.Controllers
 
             if (ModelState.IsValid)
             {
-                basket.CreateOrder(model.WarehouseId);
+                var orderId = basket.CreateOrder(model.WarehouseId);
+                TempData["successMessage"] = "New order was successfully created with ID #" + orderId + ".";
+                return RedirectToAction("Details", "Orders", new {id = orderId});
             }
 
             model.Customer = GetCustomer();
             model.Warehouses = WarehouseItemsSelectList();
             model.OrderTotal = basket.GetTotalPrice();
+            model.OrderItems = basket.GetBasketItems();
 
             return View(model);
         }

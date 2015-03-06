@@ -71,3 +71,36 @@
         </div>
     </div>
 }
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Order Items</h3>
+        <table class="table table-hover table-responsive table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Items</th>
+                <th>Unit Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var orderItem in Model.OrderItems)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details", "Products", new {id = orderItem.Id})">
+                            @Html.DisplayFor(modelItem => orderItem.Product.Name)
+                        </a>
+                    </td>
+                    <td>
+                        x @Html.DisplayFor(modelItem => orderItem.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => orderItem.Product.Price)
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

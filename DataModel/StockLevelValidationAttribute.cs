@@ -46,6 +46,12 @@ namespace DataModel
                 return new ValidationResult(errorMessage);
             }
 
+            if (product.StockLeft == 0)
+            {
+                errorMessage += "Item is currently out of stock";
+                return new ValidationResult(errorMessage);
+            }
+
             if (product.StockLeft < (int) value)
             {
                 errorMessage += product.StockLeft + " items left in stock";

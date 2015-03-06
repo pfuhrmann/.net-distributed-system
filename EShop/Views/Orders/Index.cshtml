@@ -15,9 +15,6 @@
                 #
             </th>
             <th>
-                Warehouse
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.CreatedDateTime)
             </th>
             <th>
@@ -34,10 +31,9 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => order.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => order.DestinationWarehouse.Name)
+                    <a href="@Url.Action("Details", "Orders", new {id = order.Id})">
+                        @Html.DisplayFor(modelItem => order.Id)
+                    </a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => order.CreatedDateTime)
