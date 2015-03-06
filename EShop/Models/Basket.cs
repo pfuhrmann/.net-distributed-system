@@ -24,7 +24,6 @@ namespace EShop.Models
             // Check if basket item already exists
             // with given product ID
             var basketItem = GetBasketItem(product.Id);
-
             if (basketItem == null)
             {
                 // Create a new basket item
@@ -101,7 +100,7 @@ namespace EShop.Models
             _context.SaveChanges();
 
             // Iterate over the items in the basket, 
-            // adding the order details for each
+            // adding the order item for each
             var basketItems = GetBasketItems();
             foreach (var item in basketItems)
             {

@@ -34,6 +34,7 @@ namespace EShop.Controllers
             if (ModelState.IsValid)
             {
                 basket.Update(model.BasketItems);
+                return RedirectToAction("Index");
             }
 
             model.BasketItems = basket.GetBasketItems();
