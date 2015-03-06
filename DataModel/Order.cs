@@ -22,7 +22,9 @@ namespace DataModel
         public int OrderTotal { get; set; }
 
         public string CustomerId { get; set; }
+        public int DestinationWarehouseId { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual Warehouse DestinationWarehouse { get; set; }
         public virtual ObservableListSource<OrderItem> OrderItems { get; set; }
     }
 }

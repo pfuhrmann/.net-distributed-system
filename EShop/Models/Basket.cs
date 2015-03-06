@@ -56,7 +56,7 @@ namespace EShop.Models
 
         public void Update(List<BasketItem> baksetItems)
         {
-            // Loop through basket Warehouses and update each
+            // Loop through basket items and update each
             foreach (var item in baksetItems)
             {
                 var basketItem = GetBasketItem(item.ProductId);
@@ -87,21 +87,23 @@ namespace EShop.Models
             _context.SaveChanges();
         }
 
-        public int CreateOrder()
+        public int CreateOrder(int warehouseId)
         {
             var order = new Order
             {
                 CustomerId = HttpContext.Current.User.Identity.GetUserId(),
                 Date = DateTime.Now,
                 Status = "Prepared",
-                OrderTotal = GetTotalPrice()
+                OrderTotal = GetTotalPrice(),
+                DestinationWarehouseId = warehouseId
             };
             // Save order to DB to get primary order ID key
             _context.Orders.Add(order);
             _context.SaveChanges();
 
-            // Iterate over the Warehouses in the basket, 
-            // adding the order item for each
+            // Iterate over the items in the basket, 
+            // adding the order item for each and updating
+            // stock levels
             var basketItems = GetBasketItems();
             foreach (var item in basketItems)
             {
@@ -114,9 +116,11 @@ namespace EShop.Models
                     UnitPrice = item.Product.Price
                 };
                 _context.OrderItems.Add(orderItem);
+                // Update stock level accordingly
+                item.Product.StockReserved += item.Quantity;
             }
-            _context.SaveChanges();
 
+            _context.SaveChanges();
             // Empty the basket
             EmptyBasket();
 
@@ -125,7 +129,7 @@ namespace EShop.Models
 
         public void EmptyBasket()
         {
-            // Delete all the basket Warehouses permanently
+            // Delete all the basket items permanently
             var basketItems = GetBasketItems();
             foreach (var basketItem in basketItems)
             {

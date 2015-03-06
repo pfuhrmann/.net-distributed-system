@@ -61,7 +61,7 @@ namespace EShop.Controllers
                 Price = product.Price,
                 Weight = product.Weight,
                 BoxItemsAmount = product.BoxItemsAmount,
-                Stock = product.StockTotal
+                Stock = product.StockLeft
             };
 
             return View(model);
@@ -93,7 +93,7 @@ namespace EShop.Controllers
             model.Price = product.Price;
             model.Weight = product.Weight;
             model.BoxItemsAmount = product.BoxItemsAmount;
-            model.Stock = product.StockTotal;
+            model.Stock = product.StockLeft;
 
             return View(model);
         }

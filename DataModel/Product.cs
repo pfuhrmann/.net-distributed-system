@@ -28,6 +28,17 @@ namespace DataModel
         [Required]
         public short BoxItemsAmount { get; set; }
 
+        // Stock currently claimed in orders
+        public int StockReserved { get; set; }
+
+        // Stock open to new orders
+        [NotMapped]
+        public int StockLeft
+        {
+            get { return StockTotal - StockReserved; }
+        }
+
+        // Total stock
         [NotMapped]
         public int StockTotal
         {

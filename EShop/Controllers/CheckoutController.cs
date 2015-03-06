@@ -35,7 +35,7 @@ namespace EShop.Controllers
 
             if (ModelState.IsValid)
             {
-                basket.CreateOrder();
+                basket.CreateOrder(model.WarehouseId);
             }
 
             model.Customer = GetCustomer();

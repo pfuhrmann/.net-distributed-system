@@ -63,7 +63,7 @@ namespace EShop.Models
         public int OrderTotal { get; set; }
 
         [Required(ErrorMessage = "Please select Warehouse with close proximity to your shipping address.")]
-        public int? WarehouseId { get; set; }
+        public int WarehouseId { get; set; }
 
         public IEnumerable<SelectListItem> Warehouses { get; set; }
     }

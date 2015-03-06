@@ -28,7 +28,7 @@
                             <h3>@Html.DisplayFor(model => Model.BasketItems[i].Product.Name)</h3>
                         </a>
                         <h6>
-                            <span class="stock">@Html.DisplayFor(model => Model.BasketItems[i].Product.StockTotal)</span> left in stock
+                            <span class="stock">@Html.DisplayFor(model => Model.BasketItems[i].Product.StockLeft)</span> left in stock
                         </h6>
                         [ @Html.ActionLink("Remove", "RemoveFromBasket", "Basket", new {Model.BasketItems[i].Product.Id}, new {@class = ""}) ]
                     </td>
@@ -68,5 +68,5 @@ else
 {
     <hr/>
 
-    <h4>Basket is empty. Add some Warehouses and come back later.</h4>
+    <h4>Basket is empty. Add some items and come back later.</h4>
 }
