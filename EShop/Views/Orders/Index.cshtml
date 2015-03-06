@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Order>
+@{
+    ViewBag.Title = "Your Orders";
+}
+<h2>@ViewBag.Title</h2>
+
+<hr/>
+
+@if (Model.Any())
+{
+    <table class="table table-hover table-responsive table-striped">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Warehouse
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderTotal)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.DestinationWarehouse.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.CreatedDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.OrderTotal)
+                </td>
+                <td>
+                    @Html.ActionLink("Order Details", "Details", new {id = order.Id})
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <h4>Your order history is empty. We are looking forward to your first order.</h4>
+}

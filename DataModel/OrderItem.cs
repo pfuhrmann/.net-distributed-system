@@ -14,6 +14,7 @@ namespace DataModel
         public string Status { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public int UnitPrice { get; set; }
 
         [NotMapped]

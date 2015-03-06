@@ -1,0 +1,121 @@
+﻿@model Order
+@{
+    ViewBag.Title = "Order Details";
+}
+<h2>@ViewBag.Title</h2>
+<p>
+    Ordered on <strong>@Html.DisplayFor(model => model.CreatedDateTime)</strong> |
+    Order #<strong>@Html.ValueFor(model => model.Id)</strong></p>
+<p>
+    @Html.ActionLink("Back to Your Orders", "Index")
+</p>
+<hr/>
+
+<div class="row">
+    <div class="col-sm-4">
+        <h3>Address</h3>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.FullName):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.FullName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.AddressLine1):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.AddressLine1)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.AddressLine2):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.AddressLine2)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Town):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Town)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.Postcode):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Customer.Postcode)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="col-sm-4">
+        <h3>Warehouse</h3>
+        <dl class="dl-horizontal">
+            <dt>
+                Warehouse:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DestinationWarehouse.Name)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="col-sm-4">
+        <h3>Other Details</h3>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Status):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt>
+                Total Price:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OrderTotal)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Order Items</h3>
+        <table class="table table-hover table-responsive table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Items</th>
+                <th>Unit Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var orderItem in Model.OrderItems)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Details", "Products", new {id = orderItem.Id})">
+                            @Html.DisplayFor(modelItem => orderItem.Product.Name)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => orderItem.Status)
+                    </td>
+                    <td>
+                        x @Html.DisplayFor(modelItem => orderItem.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => orderItem.UnitPrice)
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -63,5 +63,14 @@ namespace EShop.Controllers
             var userId = User.Identity.GetUserId();
             return _context.Users.First(c => c.Id == userId);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _context.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

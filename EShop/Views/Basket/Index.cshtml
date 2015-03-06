@@ -3,7 +3,7 @@
     ViewBag.Title = "Your Basket";
 }
 <h2>@ViewBag.Title</h2>
-
+<hr/>
 @if (Model.BasketItems.Count != 0)
 {
     using (Html.BeginForm("Index", "Basket", FormMethod.Post, new {role = "form"}))
@@ -66,7 +66,5 @@
 }
 else
 {
-    <hr/>
-
     <h4>Basket is empty. Add some items and come back later.</h4>
 }

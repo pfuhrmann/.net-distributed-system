@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
@@ -11,7 +10,6 @@ namespace EShop.Models
     {
         private int _quantity = 1;
         public string Name { get; set; }
-
         public int ProductId { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
@@ -36,13 +34,7 @@ namespace EShop.Models
 
     public class ProductListViewModel
     {
-        public ProductListViewModel()
-        {
-            Products = new List<Product>();
-        }
-
         public IEnumerable<Product> Products { get; set; }
-
         public string Name { get; set; }
     }
 
@@ -67,4 +59,23 @@ namespace EShop.Models
 
         public IEnumerable<SelectListItem> Warehouses { get; set; }
     }
+
+    /*public class OrderListViewModel
+    {
+        public int Id { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DateCreated { get; set; }
+
+        [Display(Name = "Warehouse")]
+        public string DestinationWarehouseName { get; set; }
+
+        public string Status { get; set; }
+
+        [Display(Name = "Order Total")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public int OrderTotal { get; set; }
+
+        public IEnumerable<SelectListItem> Warehouses { get; set; }
+    }*/
 }

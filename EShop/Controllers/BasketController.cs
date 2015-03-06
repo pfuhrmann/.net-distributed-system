@@ -70,5 +70,14 @@ namespace EShop.Controllers
         {
             return Basket.GetBasket(User.Identity.Name);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _context.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

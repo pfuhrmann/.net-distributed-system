@@ -38,7 +38,7 @@ namespace EShop.Models
             else
             {
                 // Item already exists
-                basketItem.Quantity += quantity;
+                basketItem.Quantity = quantity;
             }
 
             _context.SaveChanges();
@@ -92,8 +92,8 @@ namespace EShop.Models
             var order = new Order
             {
                 CustomerId = HttpContext.Current.User.Identity.GetUserId(),
-                Date = DateTime.Now,
-                Status = "Prepared",
+                CreatedDateTime = DateTime.Now,
+                Status = "Placed",
                 OrderTotal = GetTotalPrice(),
                 DestinationWarehouseId = warehouseId
             };
@@ -112,7 +112,7 @@ namespace EShop.Models
                     OrderId = order.Id,
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
-                    Status = "New",
+                    Status = "In other warehouse",
                     UnitPrice = item.Product.Price
                 };
                 _context.OrderItems.Add(orderItem);
@@ -129,7 +129,7 @@ namespace EShop.Models
 
         public void EmptyBasket()
         {
-            // Delete all the basket items permanently
+            // Delete all the basket items
             var basketItems = GetBasketItems();
             foreach (var basketItem in basketItems)
             {

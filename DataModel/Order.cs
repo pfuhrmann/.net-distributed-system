@@ -13,12 +13,16 @@ namespace DataModel
         public int Id { get; set; }
 
         [Required]
-        public DateTime Date { get; set; }
+        [Display(Name = "Order Placed")]
+        [DisplayFormat(DataFormatString = "{0:D}")]
+        public DateTime CreatedDateTime { get; set; }
 
         [Required]
         public string Status { get; set; }
 
         [Required]
+        [Display(Name = "Total")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public int OrderTotal { get; set; }
 
         public string CustomerId { get; set; }
