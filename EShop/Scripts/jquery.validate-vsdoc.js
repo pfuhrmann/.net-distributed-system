@@ -452,7 +452,7 @@ $.extend($.validator, {
 			/// </param>
 
 			if(errors) {
-				// add items to error list and map
+				// add Warehouses to error list and map
 				$.extend( this.errorMap, errors );
 				this.errorList = [];
 				for ( var name in errors ) {
@@ -461,7 +461,7 @@ $.extend($.validator, {
 						element: this.findByName(name)[0]
 					});
 				}
-				// remove items from success list
+				// remove Warehouses from success list
 				this.successList = $.grep( this.successList, function(element) {
 					return !(element.name in errors);
 				});

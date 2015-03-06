@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using DataModel;
 
 namespace EShop.Models
@@ -39,7 +41,7 @@ namespace EShop.Models
             Products = new List<Product>();
         }
 
-        public virtual IEnumerable<Product> Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
 
         public string Name { get; set; }
     }
@@ -50,5 +52,19 @@ namespace EShop.Models
 
         [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal BasketTotal { get; set; }
+    }
+
+    public class CheckoutViewModel
+    {
+        public Customer Customer { get; set; }
+
+        [Display(Name = "Order Total")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public int OrderTotal { get; set; }
+
+        [Required(ErrorMessage = "Please select Warehouse with close proximity to your shipping address.")]
+        public int? WarehouseId { get; set; }
+
+        public IEnumerable<SelectListItem> Warehouses { get; set; }
     }
 }

@@ -1,0 +1,73 @@
+﻿@model EShop.Models.CheckoutViewModel
+@{
+    ViewBag.Title = "Checkout";
+}
+<h2>@ViewBag.Title</h2>
+
+<hr/>
+
+@using (Html.BeginForm("Index", "Checkout", FormMethod.Post, new {role = "form"}))
+{
+    @Html.AntiForgeryToken()
+    @Html.Partial("_ValidationSummary")
+
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <h3>Shipping Address</h3>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Customer.FullName):
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Customer.FullName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Customer.AddressLine1):
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Customer.AddressLine1)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Customer.AddressLine2):
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Customer.AddressLine2)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Customer.Town):
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Customer.Town)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Customer.Postcode):
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Customer.Postcode)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <h3>Warehouse</h3>
+            @Html.DropDownListFor(
+                model => model.WarehouseId, Model.Warehouses, "--- Select Warehouse ---", new {@class = "form-control"})
+        </div>
+
+        <div class="col-md-4 col-sm-6">
+            <h3>Order Summary</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>
+                        <strong>Total:</strong> @Html.DisplayFor(model => model.OrderTotal)
+                    </h4>
+                </div>
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true" style="padding-right: 12px;"></span> Buy now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

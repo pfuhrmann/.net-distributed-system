@@ -56,7 +56,7 @@ namespace EShop.Models
 
         public void Update(List<BasketItem> baksetItems)
         {
-            // Loop through basket items and update each
+            // Loop through basket Warehouses and update each
             foreach (var item in baksetItems)
             {
                 var basketItem = GetBasketItem(item.ProductId);
@@ -96,10 +96,11 @@ namespace EShop.Models
                 Status = "Prepared",
                 OrderTotal = GetTotalPrice()
             };
-            // Save changes to get primary order ID key
+            // Save order to DB to get primary order ID key
+            _context.Orders.Add(order);
             _context.SaveChanges();
 
-            // Iterate over the items in the basket, 
+            // Iterate over the Warehouses in the basket, 
             // adding the order item for each
             var basketItems = GetBasketItems();
             foreach (var item in basketItems)
@@ -124,7 +125,7 @@ namespace EShop.Models
 
         public void EmptyBasket()
         {
-            // Delete all the basket items permanently
+            // Delete all the basket Warehouses permanently
             var basketItems = GetBasketItems();
             foreach (var basketItem in basketItems)
             {

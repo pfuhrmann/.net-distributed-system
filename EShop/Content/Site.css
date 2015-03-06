@@ -40,6 +40,10 @@
          padding-bottom: 50px;
          padding-top: 100px;
     }
+
+    h3 {
+        padding-bottom: 6px;
+    }
 }
 
 .stock {

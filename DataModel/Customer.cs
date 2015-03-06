@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -20,14 +21,23 @@ namespace DataModel
         [Required]
         public string LastName { get; set; }
 
+        [NotMapped]
+        [Display(Name = "Name")]
+        public string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
+
         public bool Gender { get; set; }
 
         public DateTime Dob { get; set; }
 
         [Required]
+        [Display(Name = "Address Line 1")]
         public string AddressLine1 { get; set; }
 
         [Required]
+        [Display(Name = "Address Line 2")]
         public string AddressLine2 { get; set; }
 
         [Required]
