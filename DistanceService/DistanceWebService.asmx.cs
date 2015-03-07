@@ -34,8 +34,6 @@ namespace DistanceService
                 var sql = SelectDistancesSql();
                 var dset = DataSetFromSql(sql);
 
-                XmlNode distanceNode = xmlDoc.CreateElement("distance");
-
                 return DataSetToXmlDoc(dset, xmlDoc, root, true);
             }
             catch (Exception ex)
@@ -78,9 +76,8 @@ namespace DistanceService
                 cmdParms[3] = new OleDbParameter();
                 cmdParms[3].Value = town1;
                 var dset = DataSetFromSql(sql, cmdParms);
-                DataSetToXmlDoc(dset, xmlDoc, root);
 
-                return xmlDoc;
+                return DataSetToXmlDoc(dset, xmlDoc, root);
             }
             catch (Exception ex)
             {
@@ -122,7 +119,7 @@ namespace DistanceService
                 foreach (DataRow dr in table.Rows)
                 {
                     // Town 1
-                    XmlNode town1Node = xmlDoc.CreateElement("town_1");
+                    XmlNode town1Node = xmlDoc.CreateElement("town1");
                     var idAttr1 = xmlDoc.CreateAttribute("id");
                     idAttr1.Value = dr["TownId1"].ToString();
                     town1Node.Attributes.Append(idAttr1);
@@ -130,7 +127,7 @@ namespace DistanceService
                     townName1.InnerText = dr["TownName1"].ToString();
                     town1Node.AppendChild(townName1);
                     // Town 2
-                    XmlNode town2Node = xmlDoc.CreateElement("town_2");
+                    XmlNode town2Node = xmlDoc.CreateElement("town2");
                     var idAttr2 = xmlDoc.CreateAttribute("id");
                     idAttr2.Value = dr["TownId2"].ToString();
                     town2Node.Attributes.Append(idAttr2);
