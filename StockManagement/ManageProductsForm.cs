@@ -24,7 +24,7 @@ namespace StockManagement
 
             // Initialize DB context
             _context = DbModel.Create();
-            _context.Products.Load();
+            _context.Products.Include(m => m.Stocks).Load();
             _context.Warehouses.Load();
 
             productBindingSource.DataSource =

@@ -113,7 +113,7 @@
             {
                 <tr>
                     <td>
-                        <a href="@Url.Action("Details", "Products", new {id = orderItem.Id})">
+                        <a href="@Url.Action("Details", "Products", new {id = orderItem.Product.Id})">
                             @Html.DisplayFor(modelItem => orderItem.Product.Name)
                         </a>
                     </td>

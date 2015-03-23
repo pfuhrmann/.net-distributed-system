@@ -134,7 +134,7 @@ namespace DistanceService
                     XmlNode townName2 = xmlDoc.CreateElement("name");
                     townName2.InnerText = dr["TownName2"].ToString();
                     town2Node.AppendChild(townName2);
-                    // Distance (between 2 town in miles)
+                    // Distance (between 2 towns in miles)
                     XmlNode distanceMiles = xmlDoc.CreateElement("distance_miles");
                     distanceMiles.InnerText = dr["DistanceInMiles"].ToString();
 
@@ -170,10 +170,10 @@ namespace DistanceService
         private string SelectDistancesSql()
         {
             return "SELECT d.DistanceInMiles," +
-                   "t1.Town AS TownName1," +
-                   "t1.TownId AS TownId1," +
-                   "t2.Town AS TownName2," +
-                   "t2.TownId AS TownId2 " +
+                   "   t1.Town AS TownName1," +
+                   "   t1.TownId AS TownId1," +
+                   "   t2.Town AS TownName2," +
+                   "   t2.TownId AS TownId2 " +
                    " FROM (Distance AS d INNER JOIN Town AS t1 ON d.Town1 = t1.TownId) " +
                    " INNER JOIN Town AS t2 ON d.Town2 = t2.TownId ";
         }
