@@ -107,12 +107,21 @@ namespace EShop.Models
             var basketItems = GetBasketItems();
             foreach (var item in basketItems)
             {
+                // Determine order item status based
+                // on warehouse availability
+                var status = "In final warehouse";
+                var warehouse = _context.Warehouses.Find(warehouseId);
+                if (!warehouse.ItemsAvalable(item.ProductId, item.Quantity))
+                {
+                    status = "In other warehouse";
+                }
+
                 var orderItem = new OrderItem()
                 {
                     OrderId = order.Id,
                     ProductId = item.ProductId,
                     Quantity = item.Quantity,
-                    Status = "In other warehouse",
+                    Status = status,
                     UnitPrice = item.Product.Price
                 };
                 _context.OrderItems.Add(orderItem);
