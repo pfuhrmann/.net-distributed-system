@@ -45,16 +45,16 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ManagementOrdersForm.cs">
+    <Compile Include="ManageOrdersForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ManagementOrdersForm.Designer.cs">
-      <DependentUpon>ManagementOrdersForm.cs</DependentUpon>
+    <Compile Include="ManageOrdersForm.Designer.cs">
+      <DependentUpon>ManageOrdersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ManagementOrdersForm.resx">
-      <DependentUpon>ManagementOrdersForm.cs</DependentUpon>
+    <EmbeddedResource Include="ManageOrdersForm.resx">
+      <DependentUpon>ManageOrdersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

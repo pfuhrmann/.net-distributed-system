@@ -15,7 +15,7 @@ namespace OrderManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ManagementOrdersForm());
+            Application.Run(new ManageOrdersForm());
         }
     }
 }

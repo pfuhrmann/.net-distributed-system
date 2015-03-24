@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using DataModel;
 using OrderManagementService;
@@ -10,13 +9,15 @@ namespace RemoteOrderManagementService
     {
         private readonly DbModel _context = new DbModel();
 
+        // Get all orders from DB
         public IOrderWrapper[] GetOrders()
         {
-            _context.Orders.Load();
             var orders = _context.Orders.ToArray();
-            var ordersWrapped = new Order[orders.Count()];
+            var ordersCount = orders.Count();
+            var ordersWrapped = new Order[ordersCount];
 
-            for (var i = 0; i < orders.Count(); i++)
+            // Map orders arr to serializable wrapper arr
+            for (var i = 0; i < ordersCount; i++)
             {
                 var order = orders[i];
                 ordersWrapped[i] = new Order
@@ -31,6 +32,26 @@ namespace RemoteOrderManagementService
             return ordersWrapped;
         }
 
+        // Find order by ID
+        public IOrderWrapper FindOrder(int id)
+        {
+            var order = _context.Orders.Find(id);
+
+            if (order != null)
+            {
+                return new Order
+                {
+                    Id = order.Id,
+                    Status = order.Status,
+                    OrderTotal = order.OrderTotal,
+                    CreatedDateTime = order.CreatedDateTime
+                };
+            }
+
+            return null;
+        }
+
+        // Update order status
         public bool UpdateOrder(int orderId, string status)
         {
             var order = _context.Orders.Find(orderId);

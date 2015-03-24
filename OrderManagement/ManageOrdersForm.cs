@@ -6,12 +6,12 @@ using OrderManagementService;
 
 namespace OrderManagement
 {
-    public partial class ManagementOrdersForm : Form
+    public partial class ManageOrdersForm : Form
     {
         private IOrderManagementService _ordersService;
         private DataGridViewComboBoxColumn _statusBoxColumn;
 
-        public ManagementOrdersForm()
+        public ManageOrdersForm()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace OrderManagement
 
             // Build data grid view
             var grid = orderDataGridView;
-            // Add Id column
+            // Id column
             grid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Id",
@@ -38,7 +38,7 @@ namespace OrderManagement
                 Width = 30,
                 ReadOnly = true
             });
-            // Add Status column
+            // Status column
             _statusBoxColumn = new DataGridViewComboBoxColumn
             {
                 DataPropertyName = "Status",
@@ -48,7 +48,7 @@ namespace OrderManagement
                 Items = {"Prepared", "Placed", "Awaiting items", "Being packed", "Dispatched", "Delivered"}
             };
             grid.Columns.Add(_statusBoxColumn);
-            // Add Created column
+            // Created column
             grid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "CreatedDateTime",
@@ -57,7 +57,7 @@ namespace OrderManagement
                 Width = 120,
                 ReadOnly = true
             });
-            // Add Price Total column
+            // Price Total column
             grid.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "OrderTotal",
@@ -92,7 +92,7 @@ namespace OrderManagement
             // Get info about order
             var currentcell = orderDataGridView.CurrentCellAddress;
             var status = (string) ((ComboBox) sender).SelectedItem;
-            int id = (int) orderDataGridView.Rows[currentcell.Y].Cells[0].Value;
+            var id = (int) orderDataGridView.Rows[currentcell.Y].Cells[0].Value;
 
             // Update order status
             _ordersService.UpdateOrder(id, status);
@@ -101,7 +101,7 @@ namespace OrderManagement
 
         private void UpdateLabel(string text, Color color, bool flash = false)
         {
-            Invoke((MethodInvoker)delegate
+            Invoke((MethodInvoker) delegate
             {
                 this.toolStripStatusLabel1.Text = text;
                 this.toolStripStatusLabel1.ForeColor = color;
@@ -114,6 +114,36 @@ namespace OrderManagement
                     this.statusStrip1.Refresh();
                 }
             });
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            // Reset label
+            toolStripLabel1.Text = "";
+
+            var text = toolStripTextBox1.Text;
+
+            // No ID provided, return all results
+            if (String.IsNullOrEmpty(text))
+            {
+                orderBindingSource.DataSource = _ordersService.GetOrders();
+                return;
+            }
+
+            int id;
+            if (Int32.TryParse(text, out id))
+            {
+                var order = _ordersService.FindOrder(id);
+                if (order == null)
+                {
+                    toolStripLabel1.Text = "No results";
+                }
+
+                orderBindingSource.DataSource = order;
+                return;
+            }
+
+            toolStripLabel1.Text = "Must be numeric";
         }
     }
 }
