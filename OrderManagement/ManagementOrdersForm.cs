@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using OrderManagementService;
 
@@ -42,7 +44,7 @@ namespace OrderManagement
                 DataPropertyName = "Status",
                 Name = "Status",
                 HeaderText = "Status",
-                Width = 80,
+                Width = 100,
                 Items = {"Prepared", "Placed", "Awaiting items", "Being packed", "Dispatched", "Delivered"}
             };
             grid.Columns.Add(_statusBoxColumn);
@@ -77,19 +79,41 @@ namespace OrderManagement
             {
                 // Remove an existing event-handler, if present, to avoid  
                 // adding multiple handlers when the editing control is reused.
-                combo.SelectedIndexChanged -= ComboBox_SelectedIndexChanged;
+                combo.SelectionChangeCommitted -= comboBox_SelectionChangeCommitted;
 
                 // Add the event handler. 
-                combo.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
+                combo.SelectionChangeCommitted += comboBox_SelectionChangeCommitted;
             }
         }
 
-        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ComboBox box = (ComboBox) sender;
+            UpdateLabel("Saving...", Color.DarkSalmon);
+            // Get info about order
+            var currentcell = orderDataGridView.CurrentCellAddress;
+            var status = (string) ((ComboBox) sender).SelectedItem;
+            int id = (int) orderDataGridView.Rows[currentcell.Y].Cells[0].Value;
 
-            /*var status = (string) ((ComboBox) sender).SelectedItem;
-            _ordersService.UpdateOrder()*/
+            // Update order status
+            _ordersService.UpdateOrder(id, status);
+            UpdateLabel("Saved", Color.ForestGreen, true);
+        }
+
+        private void UpdateLabel(string text, Color color, bool flash = false)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                this.toolStripStatusLabel1.Text = text;
+                this.toolStripStatusLabel1.ForeColor = color;
+                this.statusStrip1.Refresh();
+
+                Thread.Sleep(150);
+                if (flash)
+                {
+                    this.toolStripStatusLabel1.Text = "";
+                    this.statusStrip1.Refresh();
+                }
+            });
         }
     }
 }
