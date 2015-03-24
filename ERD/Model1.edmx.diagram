@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0d11063b717479ab6a9a3f4a63af162" Name="Diagram1" ZoomLevel="57">
+        <EntityTypeShape EntityType="comp1690Model.AspNetUser" Width="2" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.BasketItem" Width="1.5" PointX="5.875" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.OrderItem" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.Order" Width="2" PointX="3.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.Product" Width="1.5" PointX="8.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.Stock" Width="1.5" PointX="3.125" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.StocksTransferItem" Width="1.875" PointX="8.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.StocksTransfer" Width="1.5" PointX="6.875" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="comp1690Model.Warehouse" Width="1.5" PointX="1.25" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_Orders_dbo_AspNetUsers_CustomerId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_BasketItems_dbo_Products_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_OrderItems_dbo_Orders_OrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_OrderItems_dbo_Products_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_Orders_dbo_Warehouses_DestinationWarehouseId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_Stocks_dbo_Products_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_StocksTransferItems_dbo_Products_ProductId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_Stocks_dbo_Warehouses_WarehouseId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_StocksTransferItems_dbo_StocksTransfers_StockTransferId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_StocksTransfers_dbo_Warehouses_DepartureId" ManuallyRouted="false" />
+        <AssociationConnector Association="comp1690Model.FK_dbo_StocksTransfers_dbo_Warehouses_DestinationId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
