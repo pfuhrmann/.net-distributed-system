@@ -195,6 +195,32 @@
         dtINAGGiDUDGyGpoawAxeNSAQWkAORiqnRLAwAAA9EMMU8Daa3MAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="toolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASPSURBVFhHxVZtaJtVFC4MBGEgFdrEJk3SfDTNd9K0TdKm
+        TdI0uFUnKuLEH2uLuOLYr4ngcAS1rYH92JgOJCBj7TYtCP5xUu3EwabzAzu6VemPVrSpS/vmW0G7uS3H
+        c673nZlt87Gu9YGHvG/Oec8595xz7z1V9wNKpfJwTU3Ndv669bDb7deNRuMvGIiH/7W18Pv9ebfHDVar
+        9bZaqx7GYB7goq1BT6gn3x3sBm+nFxzNDtA36adVKpWeizcfwZ5gHoMAos/vgzZXG5jMppWGhoYDXOX+
+        QKFQGHFlYY1Gc1Gn0/2pa9SBxWKBDm8HYBAsAPoNBALgafeAzWYDjU4zKZfLZdzEvQENaHE1402GJma0
+        pbUFXG4Xc0LO/QE/c1zIQHeAlcTpdAL2xO/YoM9zc5UBV7wbHa84HA6gRuvs6mRpJgdU92IknS5fF7hc
+        LjCbzYC2znCz5UGpVr5qMplYTckxrZSMVkoKOBQKwdjY6BfcdGkoGhTPYCOxVIurvif6fNDX3wc/zM5k
+        hbSwg5svDqo5rvyGuHJKo0iq79G3j8LFSxcgmU0whh4N3aUjkr4Nvx6G2FLsciaTUXDzpWF32D9ztjhZ
+        g5ERkX0DfXB5emolmRWG0+nlO6cerjRfqEek1J86MwbJjPBeLBZ7kKuWhlqtVlislrzb7WYBiNw7+CIs
+        p5a+S/6WXHXAoDxfqLvriV3w1TdfXk/mknu5Svnwer1DdJrRFmvvaGf0BXwwOzd7AQC2cbW7gDp5UXfw
+        pUGY/3luEZ07ubgydPk652mfUwBE2nrDbw3dyOVyD3OVVUC9PDXrkWNHIJ6InyumWxJY+5utba2s+4nU
+        C6c/OP0+F68J7IHbZyc+xoYU3lgvS2XDbDEDBUA7gIgNCVd+nApy8Zq4MjN9LZFOPMZfN4Rt2IAsAJFW
+        mxWi0ehDXL4mKtpixUDp87S7WdpFUkbwKDVwlc3H7ueevUm7oNnZzEgB4MAR5uKyIZVKa+rq6m7J5DIQ
+        KZFKfuXi9fHyKwcWbHYbGyyIVBKDyZCtrq4uWob/Qq/Xj9J1bTQZGQ0GAwy8MPAHF6+PicmJKN0BFAQR
+        xyxAY6DSlH+T1dbWhtQaNcueaIeeT4yeKH0Z0UmHkbKVUwMSKSAyiGmNoErReQ+n4x04sKRpdii0sbN3
+        JyzGF3u5WnHgMXrejlGTASJFTwZVDSrAus6gEy9XvQP8TyqRSKL1inpo1DeyoMXv6fnDj8YXyj4jhJyg
+        Pf7u8Vv0ITkn0jMFgasDeb0cpI9IlzDV36PTSWyuqzKZjAUoOi/87lD4NSj7KhaRygj7h0beZA1ERkQa
+        jAbmRKvTsrLg5QUarQao4SjAQn163rd/H8ST8WPcbGVIZBORk6dOshqK3SySAmHE7qbfteSRwxG6jsc3
+        dDwLWaH/66lLf+3p3/Ov0xJ86ukn4fPz59jdwM1sDKlUyoiTzwRNQSOREeh9vHeV055QEA4eOgiffHoW
+        hIzwLXJVo24YdMfTNITBXKVRLHZtAX5amP9nNEsn5rBk76RyyyGuvvkQBGH7hu7+/x9VVX8D6i7weTkR
+        xX0AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -227,11 +253,29 @@
   <metadata name="DataGridViewComboBoxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="DataGridViewComboBoxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>544, 17</value>
   </metadata>
   <metadata name="warehouseBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>660, 17</value>
+  </metadata>
+  <metadata name="Weight.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="BoxItemsAmount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="TotalStock.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="StockReserved.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="StockLeft.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>64</value>
