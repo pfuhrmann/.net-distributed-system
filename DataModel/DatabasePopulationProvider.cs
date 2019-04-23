@@ -15,7 +15,7 @@ namespace DataModel
                 {
                     FirstName = "Patrik",
                     LastName = "Fuhrmann",
-                    Email = "fuhrmann.patrik@gmail.com",
+                    Email = "jaco-gr@loco.com",
                     Gender = false,
                     PhoneNumber = "+07426255540",
                     Dob = new DateTime(1990, 6, 18),
